@@ -191,6 +191,40 @@ void imprimirCandidatos(SSLL<string, Candidato> &list) {
 	}
 }
 
+void imprimirCandidatos2(SSLL<string, Candidato> &list) {
+	SSLL<string,Candidato>::Iterator it = list.itBegin();
+	++it;
+	while (it != list.itEnd()) {		
+		cout << std::left
+		<< setw(30) << (*it).info.nombre << '\t'					//Aparece en consultas
+		//<< setw(35) << dd->data.info.edad << '\t'					//Aparece en consultas
+		//<< setw(35) << dd->data.info.sexo << '\t'					//Aparece en consultas
+		//<< setw(35) << dd->data.info.ciudadNac << '\t'			//Aparece en consultas excluy con Residencia
+		<< setw(12) << (*it).info.id << '\t'						//No aparece
+		<< setw(10) << edad((*it).info.fechaNacimiento).substr(0,3) << '\t'		//No aparece
+		<< setw(20) << (*it).info.ciudadRes << '\t'			//Aparece en consultas excluy con Nacimiento
+		<< setw(30) << (*it).info.partido << '\n'; 				//Partido no debe ser imprimido pero... pues
+		++it;
+	}
+}
+
+void imprimirCandidatos3(SSLL<string, Candidato> &list) {
+	SSLL<string, Candidato>::Iterator it = list.itBegin();
+	//while (it != list.itEnd()) {		
+	while (it.hasNext()) {
+		const Data<string, Candidato> *data = it.next();	//*data shares the same address of currentNode->data
+		std::cout << std::left
+			<< setw(30) << data->info.nombre << '\t'					//Aparece en consultas
+																		//<< setw(35) << dd->data.info.edad << '\t'					//Aparece en consultas
+																		//<< setw(35) << dd->data.info.sexo << '\t'					//Aparece en consultas
+																		//<< setw(35) << dd->data.info.ciudadNac << '\t'			//Aparece en consultas excluy con Residencia
+			<< setw(12) << data->info.id << '\t'						//No aparece
+			<< setw(10) << edad(data->info.fechaNacimiento).substr(0, 3) << '\t'		//No aparece
+			<< setw(20) << data->info.ciudadRes << '\t'			//Aparece en consultas excluy con Nacimiento
+			<< setw(30) << data->info.partido << '\n'; 				//Partido no debe ser imprimido pero... pues
+
+	}
+}
 
 
 void imprimirMenuPrincipal() {
@@ -392,12 +426,16 @@ int main() {
 	LinkedList<Candidato> list;
 	SSLL<string, Candidato> indexedList;
 
-	editarArchivoV2("Ace", "Klasoxauria", "C:\\Data\\Data.txt");
-	editarArchivoV2("Jose Manuel Ferreira Benavides", "Naga", "C:\\Data\\Data.txt");
+
+	//File edition is adding an unwanted endline and causin clonation of a registry.--------------------------
+
+	//editarArchivoV2("Ace", "Klasoxauria", "C:\\Data\\Data.txt");
+	//editarArchivoV2("Jose Manuel Ferreira Benavides", "Naga", "C:\\Data\\Data.txt");
 
 
-	//obtenerDatosArchivo(indexedList);
+	obtenerDatosArchivo(indexedList);
 	//imprimirCandidatos(indexedList);
+	imprimirCandidatos2(indexedList);
 
 	
 

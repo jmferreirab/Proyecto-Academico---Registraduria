@@ -55,7 +55,9 @@ class SSLL{
 	}
 
 public:     
-	IndexedNode<T, S>* head;
+	IndexedNode<T, S>* head;		//Debe ser privado en lo posible
+	class Iterator;
+
 	SSLL(){
 		_size = 0;
         head = new IndexedNode<T,S>();
@@ -69,6 +71,18 @@ public:
 			head = head->next;
 			delete tmp;
 		}
+	}
+
+	// Raiz de la lista oculta en un iterador
+	Iterator itBegin()
+	{
+		return Iterator(head);
+	}
+
+	// Cola de la lista oculta en un iterador
+	Iterator itEnd()
+	{
+		return Iterator(0);
 	}
   
     int size(){
@@ -146,6 +160,63 @@ public:
 		//https://www.geeksforgeeks.org/iterators-c-stl/
 		return node->next;
 	}
+
+	class Iterator {
+
+	private:
+		const IndexedNode<T, S>* currentNode;
+	public:
+
+		//Constructor por defecto usa lista inicializadora para asignar currentNode a head
+		Iterator() : currentNode (head) {	}
+
+		//Constructor a partir de nodo. Usado por begin(), end()
+		Iterator(const IndexedNode<T, S>* nodo) : currentNode(nodo) {};
+
+		///Cuando se iguale el operador a un nodo, se usara ese nodo como nodo actual. 
+		///Como debe encapsularse, el retorno es una referencia a la instancia en uso de iterator
+		Iterator& operator=(IndexedNode<T, S>* nodo) {
+			this->currentNode = nodo;
+			return *this;					
+		}
+
+		// Prefix ++ overload
+		Iterator& operator++()
+		{
+			if (currentNode)
+				currentNode = currentNode->next;
+			return *this;
+		}
+
+		// Postfix ++ overload
+		Iterator operator++(int)
+		{
+			Iterator iterator = *this;
+			++*this;
+			return iterator;
+		}
+
+		const Data<T, S>* next() {
+			currentNode = currentNode->next;
+			//cout << &(currentNode->data);
+			return &(currentNode->data);
+		}
+
+		bool hasNext() {
+			return !(currentNode->next == 0);
+		}
+
+		bool operator!=(const Iterator& iterator)
+		{
+			return currentNode != iterator.currentNode;
+		}
+
+		Data<T, S> operator*()
+		{
+			return currentNode->data;
+		}
+
+	};
 
 };
 
