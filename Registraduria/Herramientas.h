@@ -79,60 +79,6 @@ void buildTimeStruct(std::tm &tmStruct, const int years, const int months, const
 
 }
 
-//Method using diff in seconds between timestamps and then deducing amount of yyyy mm dd passed from remainder.
-int edad1970(std::string src) {
-
-	const std::string delim = "/";
-	int pos, years, months, days;
-
-	//Extract tokens into strings and inyect into integers
-	pos = src.find(delim, 0);
-	std::istringstream(src.substr(0, pos)) >> years;
-	src.erase(0, pos + delim.length());
-	pos = src.find(delim, 0);
-	std::istringstream(src.substr(0, pos)) >> months;
-	src.erase(0, pos + delim.length());
-	std::istringstream(src) >> days;
-	//dd = src;									//Redundant since src only got days now
-
-	//Build a container capable of being parsed to time_t. Parse it.
-	std::tm tmStruct;
-	buildTimeStruct(tmStruct, years, months, days);
-	time_t rr = mktime(&tmStruct);
-
-	time_t timer = time(0);
-	
-	double seconds = 0;
-	if (years>=70) seconds = difftime(timer, mktime(&tmStruct));
-	else seconds = difftime(timer, mktime(&tmStruct));
-	//difftime(timer,mktime(&tmStruct));
-
-	double toDay = 1.0 / (60 * 60 * 24);
-	double toMonth = toDay / 30.5;
-	double toYear = (1.0 / (60 * 60 * 24)) / 365.25;
-
-	//how old you are?
-	//bdate 1997 03 19
-	//cdate 2018 05 20
-
-	//There are 2018-1997 years
-	double sYears = seconds * toYear;
-
-	//The integer part of years must be converted to months.
-	double sMonths = (sYears - (int)sYears) * 12;
-
-	double sDays = (sMonths - (int)sMonths) * 30.5;
-
-	//For debugging----------------------
-	//std::stringstream out;
-	//out << "\nYears: " << (int)sYears << "\tMonths: " << (int)sMonths << "\tDays: " << (int)sDays << '\n';
-	//std::string outStr = out.str();
-	//std::cout << outStr;
-
-	return (int)sYears;
-
-}
-
 //Natural human method
 std::string edad(std::string src) {
 	//Info about mktime/1  http://www.cplusplus.com/reference/ctime/mktime/
