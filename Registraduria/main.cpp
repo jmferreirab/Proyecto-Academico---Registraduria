@@ -37,7 +37,7 @@ struct Candidato {
 	string fechaNacimiento;
 	string partido;
 	string ciudadRes;
-	//string formula Vicepresidencial
+	char * fomruulaVicepresidencial
 };
 
 //ignore
