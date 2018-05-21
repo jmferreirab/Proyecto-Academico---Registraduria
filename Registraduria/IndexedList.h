@@ -141,6 +141,9 @@ public:
 	}
 
 	IndexedNode<T, S>* next(IndexedNode<T,S> *node) {
+		//http://www.cplusplus.com/reference/iterator/next/
+		//https://secweb.cs.odu.edu/~zeil/cs361/web/website/Lectures/iterators/page/iterators.html#implem
+		//https://www.geeksforgeeks.org/iterators-c-stl/
 		return node->next;
 	}
 

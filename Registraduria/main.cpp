@@ -14,6 +14,10 @@
 
 #include "IndexedList.h"
 
+//----Consejo general para implementer funciones que manipulen listas o colecciones. https://stackoverflow.com/questions/10476665/c-avoiding-copy-with-the-return-statement
+//----Evidencia de soporte en cadenas para operadores < > == https://www.geeksforgeeks.org/comparing-two-strings-cpp/
+//----Fuente del listado de municipios: https://es.wikipedia.org/wiki/Anexo:Municipios_de_Colombia_por_poblaci%C3%B3n
+
 using namespace std;
 
 namespace ASCII {
@@ -114,6 +118,12 @@ bool obtenerDatosArchivo(LinkedList<Candidato> &list) {
 
 //Intenta demostrar sobreescritora en un solo archivo. Casi imposible por carencia de un indicador para el offset de seekp
 void editarArchivoV0() {
+	//relevant docs
+	//http://www.cplusplus.com/reference/istream/istream/seekg/
+	//http://www.cplusplus.com/reference/ostream/ostream/seekp/
+	//http://www.cplusplus.com/reference/fstream/fstream/
+
+
 	std::fstream file("C:\\Data\\Data.txt", std::ios_base::out | std::ios_base::in | std::ios_base::binary);
 	if (!file) return;
 	int i = 1;

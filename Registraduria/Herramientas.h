@@ -135,6 +135,8 @@ int edad1970(std::string src) {
 
 //Natural human method
 std::string edad(std::string src) {
+	//Info about mktime/1  http://www.cplusplus.com/reference/ctime/mktime/
+
 	const std::string delim = "/";
 	int pos, years, months, days, yearsC, monthsC, daysC;
 	
