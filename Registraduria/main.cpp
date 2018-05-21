@@ -37,7 +37,7 @@ struct Candidato {
 	string fechaNacimiento;
 	string partido;
 	string ciudadRes;
-	//string formula Vicepresidencial
+	string formula Vicepresidencial
 };
 
 //ignore
@@ -296,8 +296,8 @@ void menuModificarCandidato() {
 	cin >> id;
 	//Perform search over candidadtos list
 	//cout << "Elija un proceso: \n"
-	//	<< "\n1. Modificación de nombre "
-	//	<< "\n2. Modificación de ID "
+	//	<< "\n1. ModificaciÃ³n de nombre "
+	//	<< "\n2. ModificaciÃ³n de ID "
 	//	<< "\n3. Retiro de candidatura a alcaldia"
 	//	<< "\n4. Retiro de candidatura a presidencia"
 	//	<< "\n#. Volver al menu anterior.";
@@ -446,8 +446,8 @@ void esoFunction(SSLL<string, Candidato> &list) {
 	//if(noombreCiudad200) insertar candidato en ciudad200
 
 	//En este contexto la ciudad tiene
-	//Arreglo CANDIDATOS de tamaño fijo=# partidos
-	//Arreglo RESULTADOS de tamaño votoNulo=0+votoBlanco=1+#partidos con candidato por ciudad
+	//Arreglo CANDIDATOS de tamaÃ±o fijo=# partidos
+	//Arreglo RESULTADOS de tamaÃ±o votoNulo=0+votoBlanco=1+#partidos con candidato por ciudad
 
 }
 
