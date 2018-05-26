@@ -188,14 +188,6 @@ public:
 			return *this;
 		}
 
-		// Postfix ++ overload
-		Iterator operator++(int)
-		{
-			Iterator iterator = *this;
-			++*this;
-			return iterator;
-		}
-
 		const Data<T, S>* next() {
 			currentNode = currentNode->next;
 			//cout << &(currentNode->data);

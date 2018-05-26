@@ -1,7 +1,4 @@
-#include <stddef.h>
-
-#ifndef Lists_h
-#define Lists_h
+#pragma once
 /*
 	Manuel Ferreira Benavides. 2018.
 
@@ -32,6 +29,24 @@ public:
 	LinkedList();
 	~LinkedList();
 	
+	LinkedList(const LinkedList<T> &list) {
+		root = 0;
+		_size = 0;
+		ListNode<T>* tmp = list.root;
+		while (tmp != 0) {
+			add_end(tmp->data);
+			tmp = tmp->next;
+		}
+	}
+
+	LinkedList<T> &operator=(LinkedList<T> src)
+		// pass by reference performs the copy
+	{
+		//this->_size = src._size;
+		std::swap(root, src.root); // now just swap the head of the copy 
+								   // for the head of the source
+		return *this;
+	}
 
 	/*
 		Add(Insert) given object at the end of the list. Increase size.
@@ -316,5 +331,3 @@ T LinkedList<T>::get(int index) {
 
 	return (tmp ? tmp->data : T());
 }
-
-#endif
