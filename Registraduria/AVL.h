@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 #include "Pila.h"
+#include <iostream>
 using std::stringstream;
 using std::string;
 
@@ -20,15 +21,6 @@ struct AVLNode {
 	int rightHeight;
 	int height();
 
-
-	AVLNode<T> &operator=(AVLNode<T> src)
-		// pass by reference performs the copy
-	{
-		//this->_size = src._size;
-		std::swap(root, src.root); // now just swap the head of the copy 
-								   // for the head of the source
-		return *this;
-	}
 };
 
 template<class T>

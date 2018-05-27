@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,7 +5,7 @@
 #include "Herramientas.h"
 #include <algorithm>
 #include <sstream>
-#include <random>
+#include <stdlib.h>
 #include <math.h>
 #include <cassert>
 #include "AVL.h"
@@ -59,21 +58,23 @@ std::string replace(std::string line, const std::string& substr,const std::strin
 void editarArchivoV2(const std::string &toReplace, const std::string &replacement, const std::string filepath)
 {	
 	// get a temporary file name
-	char tmp_file_name[L_tmpnam_s];
-	tmpnam_s(tmp_file_name, L_tmpnam_s);
+	char tmp_file_name[L_tmpnam];
+	std::tmpnam(tmp_file_name);
 
 	// create a 2 files. One temporary file with replaced text. Replace algorithm will looks at every string in the file.
 	{
-		std::ifstream original_file(filepath);
+		std::ifstream original_file(filepath.c_str());
 		std::ofstream temp_file(tmp_file_name);
 		std::string line;
-		while (std::getline(original_file, line))
-			temp_file << replace(line, toReplace, replacement) << '\n';
+		while (std::getline(original_file, line)) {
+			temp_file << replace(line, toReplace, replacement);
+			if (original_file.peek() != EOF) temp_file << '\n';
+		}
 	}
 	// overwrite the original file with the temporary file
 	{
 		std::ifstream temp_file(tmp_file_name);
-		std::ofstream original_file(filepath);
+		std::ofstream original_file(filepath.c_str());
 		original_file << temp_file.rdbuf();
 	}
 	// and delete the temporary file
@@ -317,6 +318,9 @@ void traverseDepts_Global(AVLNode<Departamento>* root, Func f) {
 
 int main() {
 
+	editarArchivoV2("Yen+ +", "Jennifer+Novoa+", "Data.txt");
+	//editarArchivoV2("Jose Manuel Ferreira Benavides", "Naga", "Data.txt");
+
 	//Proveer una lista gestionada por Colombia (maximo ente)=AVLTree<Departamento> cntrDptos con datos de todos los deptos en simulacion.
 	// Como saber a que departamento corresponde un candidato ? 
 	// Si el candidato solo tiene ciudad haria falta un mapa o arreglo que relacione con alguna regla a cada ciudad con cada departamento,
@@ -359,10 +363,6 @@ int main() {
 	//Herramientas_h::timeNow();  
 
 
-	//File edition is adding an unwanted endline and causin clonation of a registry.--------------------------
-
-	//editarArchivoV2("Ace", "Klasoxauria", "C:\\Data\\Data.txt");
-	//editarArchivoV2("Jose Manuel Ferreira Benavides", "Naga", "C:\\Data\\Data.txt");
 
 
 

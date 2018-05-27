@@ -4,7 +4,7 @@ John+Rodriguez+1233490448+M+Casado+1997/03/19+Bogota+Bogota+Cundinamarca+Partido
 Emily+Reynolds+232323+F+Casado+1900/03/30+Leticia+Bogota+Cundinamarca+Partido Rojo+0
 Beto+ +232323+M+Casado+1950/03/21+Cartagena+Cartegena+Bolivar+Partido Aguas+0
 Oscar+ +232323+M+Casado+1910/03/21+Cartagena+Cartegenad+Bolivar+Partido Caribe+0
-Yen+ +24444+F+Soltero+1975/01/22+Bogota+Pasto+Narino+Partido Verde+0
+Jennifer+Novoa+24444+F+Soltero+1975/01/22+Bogota+Pasto+Narino+Partido Verde+0
 Jeremiah+Gonzalez+97220319+M+Soltero+1991/03/22+Villavicencio+Restrepo+Meta+Partido Rojo+0
 Pablo+Gonzalez+97220319+M+Soltero+1991/03/22+Villavicencio+Acacias+Meta+Partido Rojo+0
 Nicolas+Novoa+56565+M+Casado+1949/02/21+Cartagena+Villavicencio+Meta+Partido Libre+0

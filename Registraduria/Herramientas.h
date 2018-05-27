@@ -26,15 +26,16 @@ void fixStr(std::string &s) {
 //Parses time using ISO-8601
 std::string timeNow() {
 	time_t rawUnixTime = time(0);
-	struct tm timeinfo;
+	struct tm *timeinfo;
 	char buffer[80];
 
-	localtime_s(&timeinfo, &rawUnixTime);
+	//#pragma warning(suppress: 4996)
+	timeinfo = localtime(&rawUnixTime);
 
 	//std::string YYYYmmddHHMMSS = "%Y-%m-%d %I:%M:%S";
 	std::string YYYYmmdd = "%Y/%m/%d";
 
-	strftime(buffer, sizeof(buffer), YYYYmmdd.c_str(), &timeinfo);
+	strftime(buffer, sizeof(buffer), YYYYmmdd.c_str(), timeinfo);
 	std::string str(buffer);
 
 	//std::cout << str;
