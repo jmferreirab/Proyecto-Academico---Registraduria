@@ -76,7 +76,7 @@ void meter(int dato, ItemCompuesto<Arbol<int>> item) {
 	Esto deja la necesidad de borrar cuando se invoque el destructor de ItemCompuesto al
 	arbol usando delete T;
 */
-void meterFixed(int dato, ItemCompuesto<Arbol<int>>* item) {
+void meterFixed(int dato, ItemCompuesto<int>* item) {
 	Arbol<int> *tempTree = new Arbol<int>();
 	for (; dato > 0; dato--) tempTree->insertar(dato);
 
@@ -102,9 +102,9 @@ void meterFixed(int dato, ItemCompuesto<Arbol<int>>* item) {
 }
 
 int main() {
-	ItemCompuesto<Arbol<int>> i1;
+	ItemCompuesto<int> i1;
 	meterFixed(5, &i1);
 
 	Nodo<int>* nodo = i1.arb->raiz;
-	std::cout << nodo->dato;
+	std::cout << "\n\n" << nodo->dato;
 }

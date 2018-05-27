@@ -4,10 +4,13 @@
 using std::cout;
 
 template <typename T>
+class Arbol;
+
+template <typename T>
 class ItemCompuesto {
 public:
 	int dato;
-	T* arb;
+	Arbol<T>* arb;
 };
 
 template <typename T>
@@ -86,7 +89,7 @@ public:
 		cout << "Called AVL CopyCTOR";
 	}
 
-	Arbol<T>* insertar(ItemCompuesto<T> *datoAInsertar) {
+	Arbol<T>* insertar(ItemCompuesto<int> *datoAInsertar) {
 		return this;
 	}
 
