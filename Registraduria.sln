@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Registraduria", "Registraduria\Registraduria.vcxproj", "{C446BBC3-27D3-4F76-BA29-65A11661D843}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Testeo Multiestructura", "Testeo Multiestructura\Testeo Multiestructura.vcxproj", "{63A30AC3-0555-4614-85D4-A83D9661862A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,14 +21,6 @@ Global
 		{C446BBC3-27D3-4F76-BA29-65A11661D843}.Release|x64.Build.0 = Release|x64
 		{C446BBC3-27D3-4F76-BA29-65A11661D843}.Release|x86.ActiveCfg = Release|Win32
 		{C446BBC3-27D3-4F76-BA29-65A11661D843}.Release|x86.Build.0 = Release|Win32
-		{63A30AC3-0555-4614-85D4-A83D9661862A}.Debug|x64.ActiveCfg = Debug|x64
-		{63A30AC3-0555-4614-85D4-A83D9661862A}.Debug|x64.Build.0 = Debug|x64
-		{63A30AC3-0555-4614-85D4-A83D9661862A}.Debug|x86.ActiveCfg = Debug|Win32
-		{63A30AC3-0555-4614-85D4-A83D9661862A}.Debug|x86.Build.0 = Debug|Win32
-		{63A30AC3-0555-4614-85D4-A83D9661862A}.Release|x64.ActiveCfg = Release|x64
-		{63A30AC3-0555-4614-85D4-A83D9661862A}.Release|x64.Build.0 = Release|x64
-		{63A30AC3-0555-4614-85D4-A83D9661862A}.Release|x86.ActiveCfg = Release|Win32
-		{63A30AC3-0555-4614-85D4-A83D9661862A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

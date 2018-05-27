@@ -126,25 +126,6 @@ std::string edad(std::string src) {
 	return ssYYYY.str();
 }
 
-
-inline std::vector<std::string> tokenize(const std::string &s, const std::string &delimiter) {
-	std::vector<std::string> ret;
-	size_t start = 0;
-	size_t end = 0;
-	size_t len = 0;
-	std::string token;
-	do {
-		end = s.find(delimiter, start);
-		len = end - start;
-		token = s.substr(start, len);
-		ret.emplace_back(token);
-		start += len + delimiter.length();
-		std::cout << token << std::endl;
-	} while (end != std::string::npos);
-	return ret;
-}
-
-
 #endif // !Herramientas_h
 
 

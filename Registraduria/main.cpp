@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <string>
 #include <iomanip>
 #include "Herramientas.h"
@@ -10,13 +9,9 @@
 #include <random>
 #include <math.h>
 #include <cassert>
-
-#include<windows.h>
 #include "AVL.h"
 #include "IndexedList.h"
 #include "StructLib.h"
-#include <io.h>
-#include <fcntl.h>
 
 //----Consejo general para implementer funciones que manipulen listas o colecciones. https://stackoverflow.com/questions/10476665/c-avoiding-copy-with-the-return-statement
 //----Evidencia de soporte en cadenas para operadores < > == https://www.geeksforgeeks.org/comparing-two-strings-cpp/
@@ -322,7 +317,7 @@ void traverseDepts_Global(AVLNode<Departamento>* root, Func f) {
 
 int main() {
 
-	//Proveer una lista gestionada por Colombia (maximo ente) con datos de todos los deptos en simulacion.
+	//Proveer una lista gestionada por Colombia (maximo ente)=AVLTree<Departamento> cntrDptos con datos de todos los deptos en simulacion.
 	// Como saber a que departamento corresponde un candidato ? 
 	// Si el candidato solo tiene ciudad haria falta un mapa o arreglo que relacione con alguna regla a cada ciudad con cada departamento,
 	// de lo contrario este proceso es imposible.
@@ -338,38 +333,13 @@ int main() {
 	imprimirPresidentes(candidaturasPresidenciales);
 	
 	string dpt1 = "Bolivar", dpt2 = "Meta", pt1 = "Partido Rojo";
-	cout << "\nInorder AVL Departamentos:\n" << cntrDptos.traverseInOrder() << '\n';
-	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << dpt1 << ":=\n" << (cntrDptos.find(dpt1))->ciudades->traverseInOrder() << '\n';
-	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << dpt2 << ":=\n" << (cntrDptos.find(dpt2))->ciudades->traverseInOrder() << '\n';
-	cout << "\nPartidos AVL para el Dpto " << dpt1 << ":=\n" << (cntrDptos.find(dpt1))->partidos->traverseInOrder() << '\n';
-	cout << "\nCandidatos Partido Rojo en el dpto " << dpt2 << ":=\n" << (cntrDptos.find(dpt2))->partidos->find(pt1)->candidatos->traverseInOrderPointer() << '\n';
-
+	cout << "Inorder AVL Departamentos:\n" << cntrDptos.traverseInOrder() << '\n';
+	cout << "Ciudades AVL en Inorder del AVL del Dpto " << dpt1 << ":=\n" << (cntrDptos.find(dpt1))->ciudades->traverseInOrder() << '\n';
+	cout << "Ciudades AVL en Inorder del AVL del Dpto " << dpt2 << ":=\n" << (cntrDptos.find(dpt2))->ciudades->traverseInOrder() << '\n';
+	cout << "Partidos AVL para el Dpto " << dpt1 << ":=\n" << (cntrDptos.find(dpt1))->partidos->traverseInOrder() << '\n';
+	cout << "Candidatos Partido Rojo en el dpto " << dpt2 << ":=\n" << (cntrDptos.find(dpt2))->partidos->find(pt1)->candidatos->traverseInOrderPointer() << '\n';
 
 	runUnitTests();
-
-
-	//menuModificarCandidato();
-
-	//Herramientas_h::timeNow();  
-
-
-	//File edition is adding an unwanted endline and causin clonation of a registry.--------------------------
-
-	//editarArchivoV2("Ace", "Klasoxauria", "C:\\Data\\Data.txt");
-	//editarArchivoV2("Jose Manuel Ferreira Benavides", "Naga", "C:\\Data\\Data.txt");
-
-
-	//imprimirCandidatos(indexedList);
-
-	
-
-
-	//cout << indexedList.head->next->next->data.info.nombre;
-
-//	obtenerDatosArchivo(list);
-
-
-	////Contextoo CIUDAD
 
 	traverseDepts_Global(cntrDptos.root, traverseCiudad_Depto);
 
@@ -384,7 +354,15 @@ int main() {
 	//		candd.at(i).votosPor = 500;
 	//	}
 
+	//menuModificarCandidato();
 
+	//Herramientas_h::timeNow();  
+
+
+	//File edition is adding an unwanted endline and causin clonation of a registry.--------------------------
+
+	//editarArchivoV2("Ace", "Klasoxauria", "C:\\Data\\Data.txt");
+	//editarArchivoV2("Jose Manuel Ferreira Benavides", "Naga", "C:\\Data\\Data.txt");
 
 
 

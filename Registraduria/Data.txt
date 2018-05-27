@@ -1,7 +1,7 @@
 Angarita Pablo+Conor+970319+M+Soltero+1991/03/22+Villavicencio+Villavicencio+Meta+Partido de la U+1
 Jen+D la Calle+990211+F+Soltero+1990/02/19+Acacias+Villavicencio+Meta+Parn de V+0
-Naga+ +1233490448+M+Casado+1997/03/19+Bogota+Bogota+Cundinamarca+Partido Verde+0
-Klasoxauria+ +232323+F+Casado+1900/03/30+Leticia+Bogota+Cundinamarca+Partido Rojo+0
+John+Rodriguez+1233490448+M+Casado+1997/03/19+Bogota+Bogota+Cundinamarca+Partido Verde+0
+Emily+Reynolds+232323+F+Casado+1900/03/30+Leticia+Bogota+Cundinamarca+Partido Rojo+0
 Beto+ +232323+M+Casado+1950/03/21+Cartagena+Cartegena+Bolivar+Partido Aguas+0
 Oscar+ +232323+M+Casado+1910/03/21+Cartagena+Cartegenad+Bolivar+Partido Caribe+0
 Yen+ +24444+F+Soltero+1975/01/22+Bogota+Pasto+Narino+Partido Verde+0
