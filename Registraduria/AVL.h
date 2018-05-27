@@ -4,7 +4,6 @@
 #include <sstream>
 #include <string>
 #include "Pila.h"
-
 using std::stringstream;
 using std::string;
 
@@ -48,7 +47,7 @@ public:
 	T * find(const T & element);
 	T * find(const string &nombre);
 	const std::string traverseInOrder();
-
+	const std::string traverseInOrderPointer();
 
 
 
@@ -57,7 +56,7 @@ public:
 	AVLTree<T> &operator=(AVLTree<T> src)
 	{
 		std::swap(root, src.root);
-		cout << "Called AVL = OPERATOR\n";
+		//cout << "Called AVL = OPERATOR\n";
 		return *this;
 	}
 
@@ -66,7 +65,7 @@ public:
 		else {
 			copyTree(this->root, *&*src.root);
 		}
-		cout << "Called AVL CopyCTOR";
+		//cout << "Called AVL CopyCTOR";
 	}
 
 	
@@ -181,6 +180,7 @@ AVLTree<T>::AVLTree(const T & element) {
 /* Inserts the passed element into the AVLTree. */
 template<class T>
 void AVLTree<T>::insert(const T &element) {
+
 
 	root = insert(root, element);
 }
@@ -326,6 +326,29 @@ const std::string AVLTree<T>::traverseInOrder()
 			output << (node->data) << "\t";				//Store IT			
 			//output << (node->left) << "\t";			//Store IT
 			//output << (node->right) << "\t";			//Store IT			
+			node = node->right;
+		}
+	}
+	return output.str();
+}
+
+template <class T> 
+const std::string AVLTree<T>::traverseInOrderPointer() {
+	AVLNode<T>* node = root;
+	Pila<AVLNode<T>*> stack;
+	std::ostringstream output;
+	AVLNode<T>* lastNode = NULL;
+	AVLNode<T>* peekNode = NULL;
+	while (!stack.PilaVacia() || node) {
+		if (node) {
+			stack.push(node);
+			node = node->left;
+		}
+		else {
+			node = stack.pop();
+			output << *(node->data) << "\t";				//Store IT			
+														//output << (node->left) << "\t";			//Store IT
+														//output << (node->right) << "\t";			//Store IT			
 			node = node->right;
 		}
 	}

@@ -18,31 +18,31 @@
 //};
 
 
-template<class T, class S>
+template<class Key, class DataT>
 struct Data {
-	T key;
-	S info;
+	Key key;
+	DataT info;
 };
 
-template<class T, class S>
+template<class Key, class DataT>
 struct IndexedNode {
-	Data<T, S> data;
+	Data<Key, DataT> data;
 	IndexedNode* next;
 };
 /*
-	Template type T defines the type used as index in structure "Data".
-	This class 'SSLL' implementation is only guaranteed to work for when T represents int types.
+	Template type Key defines the type used as index in structure "Data".
+	This class 'SSLL' implementation is only guaranteed to work for when Key represents int types.
 */
 
-template<class T, class S>
+template<class Key, class DataT>
 class SSLL{
 		
     int _size;
     
-	IndexedNode<T,S>* getNode(int index) {
+	IndexedNode<Key,DataT>* getNode(int index) {
 	
 		int pos = 1;
-		IndexedNode<T,S>* current = head;
+		IndexedNode<Key,DataT>* current = head;
 	
 		while (pos < index && current) {
 			current = current->next;
@@ -55,16 +55,16 @@ class SSLL{
 	}
 
 public:     
-	IndexedNode<T, S>* head;		//Debe ser privado en lo posible
+	IndexedNode<Key, DataT>* head;		//Debe ser privado en lo posible
 	class Iterator;
 
 	SSLL(){
 		_size = 0;
-        head = new IndexedNode<T,S>();
+        head = new IndexedNode<Key,DataT>();
         head->next = NULL;
     }
     ~SSLL(){
-        IndexedNode<T,S>* tmp;
+        IndexedNode<Key,DataT>* tmp;
 		while (head != NULL)
 		{
 			tmp = head;
@@ -89,11 +89,11 @@ public:
     	return _size;
 	}
 
-	void insert(Data<T, S> dataToAdd){		
-	    IndexedNode<T,S>* tmp = new IndexedNode<T,S>();
+	DataT* insert(Data<Key, DataT> dataToAdd){		
+	    IndexedNode<Key,DataT>* tmp = new IndexedNode<Key,DataT>();
 		tmp->data = dataToAdd;
 	    	   
-        IndexedNode<T,S>* current = head;  //holds the key for first node in a non-empty sll
+        IndexedNode<Key,DataT>* current = head;  //holds the key for first node in a non-empty sll
         
         //find node before position to add at        
         while( current->next != NULL  &&  tmp->data.key > current->next->data.key   ){
@@ -102,27 +102,29 @@ public:
         
         tmp->next = current->next;  //Make new node link to whatever previous node linked to.
         current->next = tmp;        //Make previous node link to tmp newNode
-        _size++;        
+        _size++;  
+
+		return &(tmp->data.info);
 	};	
 	
-	Data<T,S> get(T index) {
-		IndexedNode<T,S>* tmp = getNode(index);		
-		return (tmp ? tmp->data : Data<T,S>());
+	Data<Key,DataT> get(Key index) {
+		IndexedNode<Key,DataT>* tmp = getNode(index);		
+		return (tmp ? tmp->data : Data<Key,DataT>());
 	}
 	
 
-	Data<T,S> getByKey(T keySrch){
-		IndexedNode<T,S>* x = head->next;
+	Data<Key,DataT> getByKey(Key keySrch){
+		IndexedNode<Key,DataT>* x = head->next;
 		while( x != NULL && x->data.key != keySrch){
-			if( x->data.key > keySrch) return Data<T,S>();
+			if( x->data.key > keySrch) return Data<Key,DataT>();
 			x = x->next;
 		}
 		return x->data;		
 	}
 		
-	void modify(S info, T keySrch){
+	void modify(DataT info, Key keySrch){
 		
-		IndexedNode<T,S>* current = head->next;
+		IndexedNode<Key,DataT>* current = head->next;
 				
 		while( current != NULL && current->data.key != keySrch){
 			if (current->data.key > keySrch ) return;
@@ -132,9 +134,9 @@ public:
 		current->data.info = info;
 	};
 	
-	void deleteKey(T keySrch){
-		IndexedNode<T,S>* current = head;
-		IndexedNode<T,S>* target = NULL;
+	void deleteKey(Key keySrch){
+		IndexedNode<Key,DataT>* current = head;
+		IndexedNode<Key,DataT>* target = NULL;
 		
 		while( current->next != NULL && current->next->data.key != keySrch){
 			if (current->next->data.key > keySrch ) return;
@@ -150,11 +152,11 @@ public:
 		_size--;
 	}
 
-	IndexedNode<T,S>* begin() {
+	IndexedNode<Key,DataT>* begin() {
 		return head;
 	}
 
-	IndexedNode<T, S>* next(IndexedNode<T,S> *node) {
+	IndexedNode<Key, DataT>* next(IndexedNode<Key,DataT> *node) {
 		//http://www.cplusplus.com/reference/iterator/next/
 		//https://secweb.cs.odu.edu/~zeil/cs361/web/website/Lectures/iterators/page/iterators.html#implem
 		//https://www.geeksforgeeks.org/iterators-c-stl/
@@ -164,18 +166,18 @@ public:
 	class Iterator {
 
 	private:
-		const IndexedNode<T, S>* currentNode;
+		const IndexedNode<Key, DataT>* currentNode;
 	public:
 
 		//Constructor por defecto usa lista inicializadora para asignar currentNode a head
 		Iterator() : currentNode (head) {	}
 
 		//Constructor a partir de nodo. Usado por begin(), end()
-		Iterator(const IndexedNode<T, S>* nodo) : currentNode(nodo) {};
+		Iterator(const IndexedNode<Key, DataT>* nodo) : currentNode(nodo) {};
 
 		///Cuando se iguale el operador a un nodo, se usara ese nodo como nodo actual. 
 		///Como debe encapsularse, el retorno es una referencia a la instancia en uso de iterator
-		Iterator& operator=(IndexedNode<T, S>* nodo) {
+		Iterator& operator=(IndexedNode<Key, DataT>* nodo) {
 			this->currentNode = nodo;
 			return *this;					
 		}
@@ -188,7 +190,7 @@ public:
 			return *this;
 		}
 
-		const Data<T, S>* next() {
+		const Data<Key, DataT>* next() {
 			currentNode = currentNode->next;
 			//cout << &(currentNode->data);
 			return &(currentNode->data);
@@ -203,7 +205,7 @@ public:
 			return currentNode != iterator.currentNode;
 		}
 
-		Data<T, S> operator*()
+		Data<Key, DataT> operator*()
 		{
 			return currentNode->data;
 		}

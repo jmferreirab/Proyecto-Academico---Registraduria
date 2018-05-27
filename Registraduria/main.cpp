@@ -155,16 +155,24 @@ bool obtenerDatosArchivo(SSLL<string, Candidato> &list, SSLL<string, Candidatura
 			ciud = new Ciudad(candd.ciudadRes);		
 			dep->ciudades->insert(*ciud);
 		}
-
-		
-
+		Partido* partd = dep->partidos->find(candd.partido);
+		if (!partd) {
+			partd = new Partido(candd.partido);
+			dep->partidos->insert(*partd);
+		}
 
 		// Ramificacion: Alcalde o Presidente?
 		// Consume la linea siguiente a la de un Presidente como la de su vicepresidente
 		if (candd.aPresidencia == "0") {
+			//Entra candidato a alcaldia
+			//Se crea un nodo de SSLL con sus datos
 			nodoAlcaldia.info = candd;
 			nodoAlcaldia.key = candd.ciudadRes;
-			list.insert(nodoAlcaldia);
+			//Se obtiene un apuntador a la estructura candidato en la lista global de candidatos
+			Candidato* canddd = list.insert(nodoAlcaldia);
+			//Se añande dicho apuntados a las listas de Ciudad y Partido de tipo AVL<Candidato*>
+			ciud->candidatos->insert(canddd);
+			partd->candidatos->insert(canddd);
 
 		}		
 		else {
@@ -323,13 +331,6 @@ void runUnitTests() {
 	unitTestDepartamento();
 }
 
-std::wstring StringToWString(const std::string& s)
-{
-	std::wstring temp(s.length(), L' ');
-	std::copy(s.begin(), s.end(), temp.begin());
-	return temp;
-}
-
 int main() {
 
 	//Proveer una lista gestionada por Colombia (maximo ente) con datos de todos los deptos en simulacion.
@@ -348,11 +349,12 @@ int main() {
 	imprimirPresidentes(candidaturasPresidenciales);
 
 
-	string testDept = "Bolivard", testDept2 = "Meta";
+	string testDept = "Bolivar", testDept2 = "Meta", testPartido = "Rojo";
 	cout << "\nInorder AVL Departamentos: " << d.traverseInOrder() << '\n';
-	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept << " := " << (d.find(testDept))->ciudades->traverseInOrder() << '\n';
-	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept2 << " := " << (d.find(testDept2))->ciudades->traverseInOrder() << '\n';
-	
+	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept << "\n:= " << (d.find(testDept))->ciudades->traverseInOrder() << '\n';
+	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept2 << "\n:= " << (d.find(testDept2))->ciudades->traverseInOrder() << '\n';
+	cout << "\n\nPartidos AVL para el Dpto " << testDept << "\n:= " << (d.find(testDept))->partidos->traverseInOrder() << '\n';
+	cout << "\n\nCandidatos en el arbol AVL del Partido Rojo en el dpto " << testDept2 << "\n:= " << (d.find(testDept2))->partidos->find("Partido Rojo")->candidatos->traverseInOrderPointer() << '\n';
 	//runUnitTests();
 
 
