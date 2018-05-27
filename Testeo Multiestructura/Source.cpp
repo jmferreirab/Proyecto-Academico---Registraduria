@@ -6,7 +6,7 @@ using std::cout;
 
 template <typename T>
 void print(T dato) {
-	cout << '\n' << dato;
+	cout << dato << '\n';
 }
 
 template <typename T>
@@ -22,16 +22,12 @@ void impresionTipo1(Nodo<int> ** nodo) {
 	print(nodo1->dato);
 	print(nodo1->izq->dato);
 	print(nodo1->izq->izq->dato);	
-	print(nodo1->izq->izq->izq->dato);
-	print(nodo1->izq->izq->izq->izq->dato);
 }
 void impresionTipo2(Nodo<int> * nodo) {
 	nodo->dato = 555;
 	print(nodo->dato);
 	print(nodo->izq->dato);	
 	print(nodo->izq->izq->dato);
-	print(nodo->izq->izq->izq->dato);
-	print(nodo->izq->izq->izq->izq->dato);
 }
 
 /*
@@ -87,24 +83,41 @@ void meterFixed(int dato, ItemCompuesto<int>* item) {
 	}
 
 	nodo = tempTree->raiz;
-
+	item->arb = tempTree;
 	{
-		//Both achieve the same modification directly on the tree. No clones.
-		impresionTipo1(&nodo);
-		impresionTipo2(nodo);
+		//Both achieve the same modification directly on the tree. No clones. They do the same as above while loop
+		//impresionTipo1(&nodo);		//Uncomment to print
+		//impresionTipo2(nodo);			//Uncomment to print
+		
 		//print(tempTree->raiz->dato);
 		//print(tempTree->raiz->izq->dato);
 		//print(tempTree->raiz->izq->izq->dato);
-		//print(tempTree->raiz->izq->izq->izq->dato);
-		//print(tempTree->raiz->izq->izq->izq->izq->dato);
 	}
-	item->arb = tempTree;
+
 }
 
 int main() {
+
+	print("\n@START: Build ItemCompuesto<int> -------------------------\n");
+
 	ItemCompuesto<int> i1;
-	meterFixed(5, &i1);
+	i1.dato = 1155;
+	meterFixed(3, &i1);
+
+	print("\n@END: Build <ItemCompuesto<int> -------------------------\n");
 
 	Nodo<int>* nodo = i1.arb->raiz;
-	std::cout << "\n\n" << nodo->dato;
+	//print(nodo->dato);			//Unccomment to verify nodo actually got the tree data without corruption
+
+	print("\n@START: Build Arbol<ItemCompuesto<int>> -------------------------\n");
+
+	Arbol<ItemCompuesto<int>> arbolCompuesto;
+	arbolCompuesto.insertar(&i1);
+
+	print("\n@END: Build Arbol<ItemCompuesto<int>> -------------------------\n");
+
+	print("\nContents of the Arbol<ItemCompuesto<int>> at head:");
+	print(arbolCompuesto.raiz->dato.arb->raiz->dato);
+
+
 }

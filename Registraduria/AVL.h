@@ -10,7 +10,8 @@ using std::string;
 
 template<class T>
 struct AVLNode {
-
+	
+	AVLNode() {}
 	AVLNode(T newData);
 	~AVLNode();
 	T data;
@@ -191,7 +192,6 @@ AVLNode<T> * AVLTree<T>::insert(AVLNode<T> * subRoot, const T &element) {
 	AVLNode<T> * returnValue = subRoot;
 
 	if (!subRoot) {
-
 		returnValue = new AVLNode<T>(element);
 	}
 	else if (element >= subRoot->data) {
@@ -286,7 +286,7 @@ AVLNode<T> * AVLTree<T>::remove(AVLNode<T> * subRoot, const T & element, bool * 
 	}
 
 	return balance(returnValue);
-}
+};
 
 
 /* Finds the maximum element in the AVLTree. */
@@ -364,7 +364,8 @@ void AVLTree<T>::delete_traversal(AVLNode<T> * subRoot) {
 //~AVLNode functions---------------------------------------------------------------------
 /* Constructor for AVLNode, sets the node's data to element. */
 template<class T>
-AVLNode<T>::AVLNode(T element) : data(element) {
+AVLNode<T>::AVLNode(T element):data(element) {
+	//data = element;
 	leftHeight = 0;
 	rightHeight = 0;
 	left = NULL;

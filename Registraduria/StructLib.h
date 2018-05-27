@@ -76,7 +76,7 @@ public:
 		// pass by reference performs the copy
 	{
 		//this->_size = src._size;
-		std::swap(*this, src); // now just swap the head of the copy 
+		std::swap(nombre, src.nombre); // now just swap the head of the copy 
 							   // for the head of the source
 		std::cout << "Called Ciudad =OP\n";
 		return *this;
@@ -85,16 +85,19 @@ public:
 		std::cout << "Called Departamento CopyCtor\n";
 		nombre = d.nombre;
 	}
+	Ciudad() {}
 
 };
 
 class Departamento {
 public:
 	string nombre;
-	AVLTree<Ciudad> ciudades;
+	AVLTree<Ciudad> *ciudades;
 	//LinkedList<Partido> partidos;
 
-	Departamento(string nom) : nombre(nom) {}
+	Departamento(string nom) : nombre(nom) {
+		ciudades = new AVLTree<Ciudad>;
+	}
 	
 
 	inline bool operator==(const Departamento &depto)const { return nombre == depto.nombre; }
@@ -107,19 +110,22 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& out, const Departamento& depto){ return out << depto.nombre;	}
 
-	Departamento &operator=(Departamento src)
+	Departamento &operator=(Departamento &src)
 		// pass by reference performs the copy
 	{
 		//this->_size = src._size;
-		std::swap(*this, src); // now just swap the head of the copy 
+		std::swap(nombre, src.nombre); // now just swap the head of the copy 
+		std::swap(ciudades, src.ciudades); // now just swap the head of the copy 
 								   // for the head of the source
 		std::cout << "Called Departamento =OP\n";
 		return *this;
 	}
 
+	Departamento() {};
+
 	Departamento(const Departamento&d) {
 		nombre = d.nombre;
-		ciudades = d.ciudades;
+		ciudades = d.ciudades;	//Calls assignemnet operator of AVL
 		std::cout << "Called Departamento CopyCtor\n";
 	}
 

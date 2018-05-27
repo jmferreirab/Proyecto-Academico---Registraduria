@@ -147,15 +147,17 @@ bool obtenerDatosArchivo(SSLL<string, Candidato> &list, SSLL<string, Candidatura
 		// Meter el depto del candidato a simulacion o ya esta?
 		Departamento * dep = deptos.find(candd.deptoResidencia);
 		if (!dep) {
-			dep = new Departamento(candd.deptoResidencia);
-			deptos.insert(*dep);	
-
+			dep = new Departamento(candd.deptoResidencia);			
+			deptos.insert(*dep);
 		}
-		Ciudad* ciud = dep->ciudades.find(candd.ciudadRes);
+		Ciudad* ciud = dep->ciudades->find(candd.ciudadRes);
 		if (!ciud) {
-			ciud = new Ciudad(candd.ciudadRes);
-			dep->ciudades.insert(*ciud);
+			ciud = new Ciudad(candd.ciudadRes);		
+			dep->ciudades->insert(*ciud);
 		}
+
+		
+
 
 		// Ramificacion: Alcalde o Presidente?
 		// Consume la linea siguiente a la de un Presidente como la de su vicepresidente
@@ -346,9 +348,10 @@ int main() {
 	imprimirPresidentes(candidaturasPresidenciales);
 
 
-	string testDept = "Meta";
+	string testDept = "Bolivard", testDept2 = "Meta";
 	cout << "\nInorder AVL Departamentos: " << d.traverseInOrder() << '\n';
-	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept << "  " << (d.find(testDept))->ciudades.traverseInOrder() << '\n';
+	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept << " := " << (d.find(testDept))->ciudades->traverseInOrder() << '\n';
+	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept2 << " := " << (d.find(testDept2))->ciudades->traverseInOrder() << '\n';
 	
 	//runUnitTests();
 

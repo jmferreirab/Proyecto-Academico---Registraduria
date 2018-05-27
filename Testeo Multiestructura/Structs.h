@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <typeinfo>
 
 using std::cout;
 
@@ -11,6 +12,21 @@ class ItemCompuesto {
 public:
 	int dato;
 	Arbol<T>* arb;
+
+	template <typename T>
+	inline bool operator<(ItemCompuesto<T> &item)const { return dato < item.dato; }
+	inline bool operator>(ItemCompuesto<T> &item)const { return item.dato < dato; }
+	
+	ItemCompuesto<T> &operator=(ItemCompuesto<T> src)
+		// pass by reference performs the copy
+	{
+		//this->_size = src._size;
+		std::swap(arb, src.arb); // now just swap the head of the copy 
+							   // for the head of the source
+		std::cout << "->ItemCompuesto<T> assignment op\n";
+		return *this;
+	}
+
 };
 
 template <typename T>
@@ -20,21 +36,34 @@ public:
 	T dato;
 	Nodo* izq, *der,*padre;
 	
+	Nodo() {
+		izq = 0;
+		der = 0;
+	}
+
 	template <typename T>
 	Nodo(T datoN) {
 		dato = datoN;
 		izq = 0;
 		der = 0;
-		cout << "Katon haisekshu";
+		cout << "->Node<T> ctr with dato:= " << dato << "\n";
 	}
 
-	Nodo(const Nodo<T> &src) {
-		if (src.raiz == 0) raiz = 0;
-		else {
-			copyTree(this->raiz, *&*src.raiz);
-		}
-		cout << "Called AVL CopyCTOR";
+	template <>	Nodo(T* datoN) {
+		//Needed even if bypassed by compiler
+		dato = *datoN;
+		izq = 0;
+		der = 0;
+		cout << "->Node<T+>\n";
 	}
+
+	//Nodo(const Nodo<T> &src) {
+	//	if (src.raiz == 0) raiz = 0;
+	//	else {
+	//		copyTree(this->raiz, *&*src.raiz);
+	//	}
+	//	cout << "Called AVL CopyCTOR";
+	//}
 
 
 };
@@ -48,53 +77,34 @@ public:
 		raiz = 0;
 	}
 
-	//This swap is working. Effectively, contents from one tree are being exchanged with contents of the other
-	//But if those contents were scoped and waiting for garbage collector then it will be for nil.
-	Arbol<T>& operator=(Arbol<T> &srcRhs)
-	{
-		//if (this == &srcRhs)	return *this;
-
-		//T tmp(srcRhs.raiz);
-		//srcRhs.raiz = raiz;
-		//raiz = tmp;
-
-		//std::swap(*this, srcRhs);			
-		//Bad idea to try to swap the container, overwrite the contents rather like in next line.
-		cout << "Called AVL = OPERATOR\n";
-		myswap(raiz, srcRhs.raiz);
-		//std::swap(raiz, srcRhs.raiz);
-
-		return *this;
-	}
-
-	template <typename T>
-	void myswap(T lhs, T rhs) {
-		T tmp(rhs);
-		rhs = lhs;
-		lhs = tmp;
-	}
-
-	//void myswap(Nodo<int> *lhs, Nodo<int>* rhs) {
-	//	cout << "\nndo int\n";
-	//	Nodo<int> *tmp(rhs);
-	//	rhs = lhs;
-	//	lhs = tmp;
-	//}
-
-	Arbol(const Arbol<T> *src) {
-		if (src.raiz == 0) raiz = 0;
-		else {
-			copyTree(this->raiz, *&*src.raiz);
+	Arbol<T>* insertar(T *datoAInsertar) {
+		cout << "Inserting into Tree<ItemCompuesto<int>> with first dato in ItemCompuesto own tree as " << datoAInsertar->arb->raiz->dato << "\n";
+		Nodo<T>* cursorNode = raiz, *parent;		
+		if (!raiz) {
+			cursorNode = new Nodo<T>;
+			cursorNode->dato = *datoAInsertar;
+			raiz = &*cursorNode;
+			
+			return this;
 		}
-		cout << "Called AVL CopyCTOR";
-	}
-
-	Arbol<T>* insertar(ItemCompuesto<int> *datoAInsertar) {
-		return this;
+		while (cursorNode != 0) {
+			parent = cursorNode;
+			if (*datoAInsertar < cursorNode->dato) {
+				cursorNode = cursorNode->izq;
+				if (!cursorNode) {
+					cursorNode = new Nodo<T>(datoAInsertar);
+					parent->izq = cursorNode;
+					return this;
+				}
+			}
+			else cursorNode = cursorNode->der;
+		}
+		return 0;
 	}
 
 	Arbol<int>* insertar(int datoAInsertar) {
-		
+		cout << "->Override Insertar(int) to add " << datoAInsertar << " at " << this << "\n" ;
+
 		Nodo<int>* cursorNode = raiz, *parent;
 		
 		if (!raiz) {
@@ -124,9 +134,43 @@ public:
 		return this;
 	}
 
+	//This swap is working. Effectively, contents from one tree are being exchanged with contents of the other
+	//But if those contents were scoped and waiting for garbage collector then it will be for nil.
+	//Copyng pointers doesn't call this tho. As expected.
+	Arbol<T>& operator=(Arbol<T> &srcRhs)
+	{
+		cout << "Called AVL = OPERATOR\n";
+		myswap(raiz, srcRhs.raiz);
+
+		//if (this == &srcRhs)	return *this;
+
+		//T tmp(srcRhs.raiz);
+		//srcRhs.raiz = raiz;
+		//raiz = tmp;
+
+		//std::swap(*this, srcRhs);			
+		//Bad idea to try to swap the container, overwrite the contents rather like in next line.
+		//std::swap(raiz, srcRhs.raiz);
+
+		return *this;
+	}
+
+	template <typename T>
+	void myswap(T lhs, T rhs) {
+		T tmp(rhs);
+		rhs = lhs;
+		lhs = tmp;
+	}
+
+	Arbol(const Arbol<T> *src) {
+		if (src.raiz == 0) raiz = 0;
+		else {
+			copyTree(this->raiz, *&*src.raiz);
+		}
+		cout << "Called AVL CopyCTOR";
+	}
+
 private:
-
-
 
 	void copyTree(Nodo<T> *&thisRoot, Nodo<T> *&sourceRoot)
 	{
