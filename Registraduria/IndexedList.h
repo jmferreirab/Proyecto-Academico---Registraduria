@@ -1,5 +1,4 @@
 #include <stddef.h>
-#include "ICollection.h"
 #include <string>
 #include <iterator>
 #include <algorithm>

@@ -57,28 +57,29 @@ std::string replace(std::string line, const std::string& substr,const std::strin
 /// Para hacerlo tiene que examinar cada cadena y luego reescribirla. Requiere la funcion replace
 void editarArchivoV2(const std::string &toReplace, const std::string &replacement, const std::string filepath)
 {	
-	// get a temporary file name
-	char tmp_file_name[L_tmpnam];
-	std::tmpnam(tmp_file_name);
+	const char* tmpFile = "tempFile.txt";			// get a temporary file name
 
 	// create a 2 files. One temporary file with replaced text. Replace algorithm will looks at every string in the file.
 	{
 		std::ifstream original_file(filepath.c_str());
-		std::ofstream temp_file(tmp_file_name);
-		std::string line;
+		std::ofstream temp_file(tmpFile, std::ofstream::trunc);
+		std::string line;		
 		while (std::getline(original_file, line)) {
 			temp_file << replace(line, toReplace, replacement);
 			if (original_file.peek() != EOF) temp_file << '\n';
 		}
+		//cout << temp_file.tellp() << '\n';	//tells how many character were passed to temp_file;
+		
 	}
 	// overwrite the original file with the temporary file
 	{
-		std::ifstream temp_file(tmp_file_name);
-		std::ofstream original_file(filepath.c_str());
+		std::ifstream temp_file(tmpFile);
+		std::ofstream original_file(filepath.c_str(), std::ofstream::trunc);
 		original_file << temp_file.rdbuf();
+		//cout << temp_file.rdbuf();
 	}
-	// and delete the temporary file
-	std::remove(tmp_file_name);
+	
+	std::remove(tmpFile);			// and delete the temporary file
 }
 
 void editarArchivoV3() {
