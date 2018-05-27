@@ -3,7 +3,6 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include "Lists.h"
 #include <iomanip>
 #include "Herramientas.h"
 #include <algorithm>
@@ -37,11 +36,7 @@ namespace ASCII {
 using namespace std;
 using namespace ASCII;
 
-
-
-
-
-std::string describir(Candidato c) {
+std::string describirCanddt(Candidato c) {
 	ostringstream ss;
 	ss << std::left
 		<< setw(30) << c.nombre + " " + c.apellido << '\t'
@@ -53,10 +48,7 @@ std::string describir(Candidato c) {
 	return ss.str();
 }
 
-
-
-std::string replace(std::string line, const std::string& substr,
-	const std::string& replace_with)
+std::string replace(std::string line, const std::string& substr,const std::string& replace_with)
 {
 	std::string::size_type pos = 0;
 	while ((pos = line.find(substr, pos)) != std::string::npos)
@@ -68,7 +60,7 @@ std::string replace(std::string line, const std::string& substr,
 }
 
 /// Crea 2 archivos. Uno temporal en el que toda ocurrencia de toReplace cambia a replacement en el archivo dado.
-/// Para hacerlo tiene que examinar cada cadena y luego reescribirla.
+/// Para hacerlo tiene que examinar cada cadena y luego reescribirla. Requiere la funcion replace
 void editarArchivoV2(const std::string &toReplace, const std::string &replacement, const std::string filepath)
 {	
 	// get a temporary file name
@@ -99,15 +91,17 @@ void editarArchivoV3() {
 	//At each step using an ofstream of("C:\\Data\\Data.txt")
 	//do 
 	// of << elementoActualEnlista.data.nombre <<  " \t" << elementoActualEnLista.data.fechaDeNacimiento ...
+	// using algorithm resembling editarArchivoV2
 }
 
-///Version 2. Su parametro paso a tipo Single Sorted Linked List. 
-///Esta funcion empaca los contenidos del archivo siguiendo reglas fijas sobre el formato esperado en el archivo.
-///El parametro es SSLL dado que este tipo de lista es capaz de sortear sobre la clave de tipo string al momento de insertar.
-///Tras ejecutar la funcion list (dependiendo de la clave que la funcion) elija, estara sorteada por clave.
-///Lo anterior es necesario para poder usar empacarCandidatosEnCiudades/1
+//Version 2. Su parametro paso a tipo Single Sorted Linked List. 
+//Esta funcion empaca los contenidos del archivo siguiendo reglas fijas sobre el formato esperado en el archivo.
+//El parametro es SSLL dado que este tipo de lista es capaz de sortear sobre la clave de tipo string al momento de insertar.
+//Tras ejecutar la funcion, list (dependiendo de la clave que la funcion) elija, estara sorteada por clave.
+//A medida que nuevos candidatos aparecen eston son empacan en la jerarquia compuesta data por AVLTree<Departamento>
 bool obtenerDatosArchivo(SSLL<string, Candidato> &list, SSLL<string, CandidaturaPresidencial> &lisPres, AVLTree<Departamento> &deptos) {
-	std::ifstream file("C:\\Data\\Data.txt");
+	//std::ifstream file("C:\\Data\\Data.txt");
+	std::ifstream file("Data.txt");
 
 	Data<string, Candidato> nodoAlcaldia;
 	Data<string, CandidaturaPresidencial> nodoPres;
@@ -120,8 +114,11 @@ bool obtenerDatosArchivo(SSLL<string, Candidato> &list, SSLL<string, Candidatura
 
 	if (!file)
 	{
-		cerr << "No se pudo leer el archivo de entrada";
+		cerr << "No se pudo leer el archivo de entrada\n";
+		//cin.get();
+		exit(0);
 		return false;
+		
 	}
 
 	//It would be a bad idea to directly create the Candidadto when reading from stream. What if we decide to delete the candidadte midway.
@@ -205,45 +202,27 @@ bool obtenerDatosArchivo(SSLL<string, Candidato> &list, SSLL<string, Candidatura
 
 void imprimirCandidatos(SSLL<string, Candidato> &list) {
 	IndexedNode<string, Candidato>* dd = list.begin();
-	//cout << '\n';
 	while (list.next(dd) != NULL) {
 		dd = list.next(dd);
-		cout << std::left
-			<< setw(30) << dd->data.info.nombre << '\t'					//Aparece en consultas
-			//<< setw(35) << dd->data.info.edad << '\t'					//Aparece en consultas
-			//<< setw(35) << dd->data.info.sexo << '\t'					//Aparece en consultas
-			//<< setw(35) << dd->data.info.ciudadNac << '\t'			//Aparece en consultas excluy con Residencia
-
-			<< setw(12) << dd->data.info.id << '\t'						//No aparece
-			<< setw(10) << edad(dd->data.info.fechaNacimiento).substr(0,3) << '\t'		//No aparece
-			<< setw(20) << dd->data.info.ciudadRes << '\t'			//Aparece en consultas excluy con Nacimiento
-			<< setw(30) << dd->data.info.partido << '\n'; 				//Partido no debe ser imprimido pero... pues
+		cout << std::left << setw(10) << edad(dd->data.info.fechaNacimiento).substr(0,3) << '\n'; 				//Partido no debe ser imprimido pero... pues
 	}
 }
-
 void imprimirCandidatos2(SSLL<string, Candidato> &list) {
 	SSLL<string,Candidato>::Iterator it = list.itBegin();
 	++it;
 	while (it != list.itEnd()) {		
-		cout << std::left
-		<< setw(30) << (*it).info.nombre << '\t'					//Aparece en consultas
-		//<< setw(35) << dd->data.info.edad << '\t'					//Aparece en consultas
-		//<< setw(35) << dd->data.info.sexo << '\t'					//Aparece en consultas
-		//<< setw(35) << dd->data.info.ciudadNac << '\t'			//Aparece en consultas excluy con Residencia
-		<< setw(12) << (*it).info.id << '\t'						//No aparece
-		<< setw(10) << edad((*it).info.fechaNacimiento).substr(0,3) << '\t'		//No aparece
-		<< setw(20) << (*it).info.ciudadRes << '\t'			//Aparece en consultas excluy con Nacimiento
-		<< setw(30) << (*it).info.partido << '\n'; 				//Partido no debe ser imprimido pero... pues
+		cout << std::left << setw(10) << edad((*it).info.fechaNacimiento).substr(0, 3) << '\t';		//No aparece
 		++it;
 	}
 }
 
 void imprimirAlcaldes(SSLL<string, Candidato> &list) {
 	SSLL<string, Candidato>::Iterator it = list.itBegin();
-	std::cout << '\n';
+	cout << std::left << setw(32) << "Nombre Completo" << setw(16) << "ID" << setw(5) << "Edad\t" << setw(2) << "Genero\t" << setw(16) << "Ciudad Res." << setw(10) << "Partido" << '\n'; 				//Partido no debe ser imprimido pero... pues
+	cout << "--------------------------------------------------------------------------------------\n";
 	while (it.hasNext()) {
 		const Data<string, Candidato> *data = it.next();	//*data shares the same address of currentNode->data
-		cout << describir(data->info);
+		cout << describirCanddt(data->info);
 	}
 }
 
@@ -252,61 +231,10 @@ void imprimirPresidentes(SSLL<string, CandidaturaPresidencial> &list) {
 	std::cout << '\n';
 	while (it.hasNext()) {
 		const Data<string, CandidaturaPresidencial> *data = it.next();	//*data shares the same address of currentNode->data
-		cout << "Prste:\t"	<<	describir(data->info.presidente)
-		<< "ViceP:\t" << describir(data->info.vicePresidente);
+		cout << "Prste:\t"	<<	describirCanddt(data->info.presidente)
+		<< "ViceP:\t" << describirCanddt(data->info.vicePresidente);
 	}
 }
-
-
-LinkedList<Candidato>* obtenerListaCandidatosPorRegion(int codRegion) {
-	return NULL;
-};
-
-
-///Llenar lista de candidatos
-/// O bien usando lista indexada por codigo de ciudad
-/// O bien sorteando la lista al terminar de insertar por codigo de ciudad
-///El codigo de insersion podria modificarse para deducir la lista de ciudades en simulacion o simplemente tomarla las ciudades de archivo aparte.
-
-///La lista sorteada presentara todos los candidatos a alcaldia. Los de una misma ciudad apareceran de forma consecutiva.
-///En esta lista entonces se evidenciaran grupos de candidatos a una misma alcaldia.
-///Entonces Con un solo condicional (siCiudadProcesadaActualmente!=CiudadNuevaEntrada) que aplicara sobre cada entrada de la lista
-///Si ademas seguimos un estandar de orden alfabetico para las ciudades activas (con candidatos), se sabe que cada vez que el condicional falle se pasara a la siguiente ciudad en orden alfabetico
-///Con lo anterior habran unificado los condicionales 
-///if(nombreCiudad1) insertar candidato en ciudad1
-///if(nombreCiudad2) insertar candidato en ciudad2
-///...
-///...
-///if(noombreCiudad199) insertar candidato en ciudad199
-///if(noombreCiudad200) insertar candidato en ciudad200
-
-///En este contexto la ciudad tiene
-///Arreglo CANDIDATOS de tamaño fijo=# partidos
-///Arreglo RESULTADOS de tamaño votoNulo=0+votoBlanco=1+#partidos con candidato por ciudad
-void empacarCandidatosEnCiudades(SSLL<string, Candidato> &list) {
-
-
-
-}
-
-
-//https://stackoverflow.com/questions/4700052/are-vector-a-special-case-of-linked-lists
-//Revisar el enlace para definir que tipo de estructura de datos usar.   
-//Revisar redundancia en usar Colombia.nombres y Deptos.Partidos etc...
-//void consulta1(string depto, string partido) {
-//	for (int i = 0; i < Colombia.nombresDptoosEnSimulacion.getSize(); i++) {
-//		if (Colombia.nombresDptoosEnSimulacion.next().nombre == depto) {
-//			for (int j = 0; j < Colombia.nombresPartidosEnSimulacion.getSize(); j++) {
-//				if (Colombia.nombresPartidosEnSimulacion.next().nombre == partido) {
-//					for (int k = 0; k < Deptos[i].Partidos[j].candidatos.getSize(); k++) {
-//						cout << "Datos candidato " << Deptos[i].Partidos[j].candidatos.get(k);
-//					}
-//				}
-//			}
-//		}
-//	}
-//}
-
 
 
 void codigoDescartado() {
@@ -319,16 +247,77 @@ void codigoDescartado() {
 	};
 }
 
-
 void unitTestDepartamento() {
 	Departamento a("Amazonia"), b("Huila");	
 	Departamento c("Bolivar"), d("Cundinamarca");
-	//assert(a < b);
-	//assert(c < d);
+	assert(a < b);
+	assert(c < d);
 }
 
 void runUnitTests() {
 	unitTestDepartamento();
+}
+
+
+//En vez de tratar de templetear cada traversal (Nivel ciudad, los candidatos), (Nivel partido, los candidatos), (Nivel Depto, las ciudades), (Nivel Global, los dptos)
+//Meter un parametro int y hacer un switch case en cada traversal que permita seleccionar una ruta con una funcion, como borrar o modificar.
+
+void traverseCandidatos_City(AVLNode<Candidato*>* root) {
+	AVLNode<Candidato*>* cdd = root;
+	Pila<AVLNode<Candidato*>*> stackCdd;
+	AVLNode<Candidato*>* lastNodeC = NULL;
+	AVLNode<Candidato*>* peekNodeC = NULL;
+	while (!stackCdd.PilaVacia() || cdd) {
+		if (cdd) {
+			stackCdd.push(cdd);
+			cdd = cdd->left;
+		}
+		else {
+			cdd = stackCdd.pop();
+			cout << cdd->data->nombre << "\n";
+			cdd = cdd->right;
+		}
+	}
+}
+
+
+void traverseCiudad_Depto(AVLNode<Ciudad>* root) {
+	AVLNode<Ciudad>* cNode = root;
+	Pila<AVLNode<Ciudad>*> stackC;
+	AVLNode<Ciudad>* lastNodeC = NULL;
+	AVLNode<Ciudad>* peekNodeC = NULL;
+	while (!stackC.PilaVacia() || cNode) {
+		if (cNode) {
+			stackC.push(cNode);
+			cNode = cNode->left;
+		}
+		else {
+			cNode = stackC.pop();
+			traverseCandidatos_City(cNode->data.candidatos->root);
+			//f(cNode->data.candidatos->root);
+			cNode = cNode->right;
+		}
+	}
+}
+
+template <typename Func>
+void traverseDepts_Global(AVLNode<Departamento>* root, Func f) {
+	AVLNode<Departamento>* node = root;
+	Pila<AVLNode<Departamento>*> stack;
+	AVLNode<Departamento>* lastNode = NULL;
+	AVLNode<Departamento>* peekNode = NULL;
+	while (!stack.PilaVacia() || node) {
+		if (node) {
+			stack.push(node);
+			node = node->left;
+		}
+		else {
+			node = stack.pop();
+			//traverseCiudad_Depto(node->data.ciudades->root);
+			f(node->data.ciudades->root);
+			node = node->right;
+		}
+	}
 }
 
 int main() {
@@ -342,29 +331,26 @@ int main() {
 
 	SSLL<string, Candidato> alcaldes;
 	SSLL<string, CandidaturaPresidencial> candidaturasPresidenciales;
-	AVLTree<Departamento> d;
+	AVLTree<Departamento> cntrDptos;
 
-	obtenerDatosArchivo(alcaldes, candidaturasPresidenciales, d);
+	obtenerDatosArchivo(alcaldes, candidaturasPresidenciales, cntrDptos);
 	imprimirAlcaldes(alcaldes);
 	imprimirPresidentes(candidaturasPresidenciales);
+	
+	string dpt1 = "Bolivar", dpt2 = "Meta", pt1 = "Partido Rojo";
+	cout << "\nInorder AVL Departamentos:\n" << cntrDptos.traverseInOrder() << '\n';
+	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << dpt1 << ":=\n" << (cntrDptos.find(dpt1))->ciudades->traverseInOrder() << '\n';
+	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << dpt2 << ":=\n" << (cntrDptos.find(dpt2))->ciudades->traverseInOrder() << '\n';
+	cout << "\nPartidos AVL para el Dpto " << dpt1 << ":=\n" << (cntrDptos.find(dpt1))->partidos->traverseInOrder() << '\n';
+	cout << "\nCandidatos Partido Rojo en el dpto " << dpt2 << ":=\n" << (cntrDptos.find(dpt2))->partidos->find(pt1)->candidatos->traverseInOrderPointer() << '\n';
 
 
-	string testDept = "Bolivar", testDept2 = "Meta", testPartido = "Rojo";
-	cout << "\nInorder AVL Departamentos: " << d.traverseInOrder() << '\n';
-	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept << "\n:= " << (d.find(testDept))->ciudades->traverseInOrder() << '\n';
-	cout << "\nCiudades AVL en Inorder del AVL del Dpto " << testDept2 << "\n:= " << (d.find(testDept2))->ciudades->traverseInOrder() << '\n';
-	cout << "\n\nPartidos AVL para el Dpto " << testDept << "\n:= " << (d.find(testDept))->partidos->traverseInOrder() << '\n';
-	cout << "\n\nCandidatos en el arbol AVL del Partido Rojo en el dpto " << testDept2 << "\n:= " << (d.find(testDept2))->partidos->find("Partido Rojo")->candidatos->traverseInOrderPointer() << '\n';
-	//runUnitTests();
+	runUnitTests();
 
 
 	//menuModificarCandidato();
 
 	//Herramientas_h::timeNow();  
-	
-	//cout << age("03/19/1997");
-
-	LinkedList<Candidato> list;
 
 
 	//File edition is adding an unwanted endline and causin clonation of a registry.--------------------------
@@ -384,10 +370,8 @@ int main() {
 
 
 	////Contextoo CIUDAD
-	//vector<string> ciudades = { "Paul", "Paul", "Paul" };
 
-	//for (size_t i = 0; i < ciudades.size; i++)
-	//{
+	traverseDepts_Global(cntrDptos.root, traverseCiudad_Depto);
 
 	//vector<string> candd = { "Paul", "Paul", "Paul" };
 	//ResultadosCiudadX.pos5;
@@ -400,8 +384,7 @@ int main() {
 	//		candd.at(i).votosPor = 500;
 	//	}
 
-	//	
-	//}
+
 
 
 

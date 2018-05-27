@@ -323,7 +323,7 @@ const std::string AVLTree<T>::traverseInOrder()
 		}
 		else {
 			node = stack.pop();
-			output << (node->data) << "\t";				//Store IT			
+			output << (node->data) << '\n';				//Store IT			
 			//output << (node->left) << "\t";			//Store IT
 			//output << (node->right) << "\t";			//Store IT			
 			node = node->right;
@@ -346,7 +346,7 @@ const std::string AVLTree<T>::traverseInOrderPointer() {
 		}
 		else {
 			node = stack.pop();
-			output << *(node->data) << "\t";				//Store IT			
+			output << *(node->data) << '\n';				//Store IT			
 														//output << (node->left) << "\t";			//Store IT
 														//output << (node->right) << "\t";			//Store IT			
 			node = node->right;

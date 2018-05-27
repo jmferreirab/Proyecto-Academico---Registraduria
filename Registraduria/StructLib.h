@@ -14,7 +14,14 @@ struct Candidato {
 	string partido;
 	string aPresidencia;
 
-	friend std::ostream& operator<<(std::ostream& out, const Candidato& partd) { return out << partd.nombre; }
+	friend std::ostream& operator<<(std::ostream& out, const Candidato& c) { 
+		out << std::left
+			<< std::setw(30) << c.nombre + " " + c.apellido << '\t'
+			<< std::setw(5) << edad(c.fechaNacimiento) << '\t'					//Aparece en consultas
+			<< std::setw(2) << c.genero << '\t'					//Aparece en consultas
+			<< std::setw(10) << c.ciudadRes << '\t';			//Aparece en consultas excluy con Nacimiento
+		return out;
+	}
 
 };
 
@@ -43,7 +50,7 @@ class ResultadosPresidencia {
 
 class ResultadosCiudadX {
 	//string departamento;
-	LinkedList<int> votosDepartamento;   //Every candidato is attached to a 'partido'
+	//LinkedList<int> votosDepartamento;   //Every candidato is attached to a 'partido'
 
 										 //En votos departamento
 										 //pos 0 : #votos blanco
