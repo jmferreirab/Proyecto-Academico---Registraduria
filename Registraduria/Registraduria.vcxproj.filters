@@ -20,16 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lists.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Herramientas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IndexedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AVL.h">

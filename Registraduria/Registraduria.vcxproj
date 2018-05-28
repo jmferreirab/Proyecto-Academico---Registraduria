@@ -124,9 +124,6 @@
   <ItemGroup>
     <ClInclude Include="AVL.h" />
     <ClInclude Include="Herramientas.h" />
-    <ClInclude Include="ICollection.h" />
-    <ClInclude Include="IndexedList.h" />
-    <ClInclude Include="Lists.h" />
     <ClInclude Include="Pila.h" />
     <ClInclude Include="StructLib.h" />
   </ItemGroup>
