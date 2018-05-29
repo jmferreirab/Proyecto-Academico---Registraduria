@@ -5,12 +5,13 @@
 #include <string>
 #include "Pila.h"
 #include <iostream>
+#include "Lists.h"
 using std::stringstream;
 using std::string;
 
 template<class T>
 struct AVLNode {
-	
+
 	AVLNode() {}
 	AVLNode(T newData);
 	~AVLNode();
@@ -33,7 +34,7 @@ public:
 	AVLTree();
 	AVLTree(const T & element);
 	~AVLTree();
-	void insert(const T &element);
+	T* insert(const T &element);
 	bool remove(const T & element);
 	const T * findMax();
 	T * find(const T & element);
@@ -60,9 +61,37 @@ public:
 		//cout << "Called AVL CopyCTOR";
 	}
 
-	
+	LinkedList<T> * asList() {
+		LinkedList<T> *list = new LinkedList<T>();
+
+		AVLNode<T>* node = root;
+		Pila<AVLNode<T>*> stack;
+		AVLNode<T>* lastNode = NULL;
+		AVLNode<T>* peekNode = NULL;
+		while (!stack.PilaVacia() || node) {
+			if (node) {
+				stack.push(node);
+				node = node->left;
+			}
+			else {
+				node = stack.pop();
+				list->add_end(node->data);
+				node = node->right;
+			}
+		}
+		return list;
+	};
+
 
 private:
+
+	void delete_traversal(AVLNode<T> * subRoot);
+	AVLNode<T> * insert(AVLNode<T> * subRoot, const T &element, T** ref);
+	AVLNode<T> * remove(AVLNode<T> * subRoot, const T & element, bool * val);
+	T * find(AVLNode<T> * subRoot, const T & element);
+	T * find(AVLNode<T> * subRoot, const string &nombre);
+
+	AVLNode<T> * findMax(AVLNode<T> * subRoot);
 
 	void copyTree(AVLNode<T> *&thisRoot, AVLNode<T> *&sourceRoot)
 	{
@@ -76,7 +105,7 @@ private:
 			copyTree(thisRoot->left, sourceRoot->left);
 			copyTree(thisRoot->right, sourceRoot->right);
 		}
-	}
+	};
 
 	//Helpers functions. Not the actual interface. Used to favor encapsulation
 
@@ -147,14 +176,7 @@ private:
 		return returnValue;
 	};
 
-	void delete_traversal(AVLNode<T> * subRoot);
-	AVLNode<T> * insert(AVLNode<T> * subRoot, const T &element);
-	AVLNode<T> * remove(AVLNode<T> * subRoot, const T & element, bool * val);
-	T * find(AVLNode<T> * subRoot, const T & element);
-	T * find(AVLNode<T> * subRoot, const string &nombre);
 
-
-	AVLNode<T> * findMax(AVLNode<T> * subRoot);
 
 
 };
@@ -169,31 +191,33 @@ AVLTree<T>::AVLTree(const T & element) {
 	root = new AVLNode<T>(element);
 }
 
-/* Inserts the passed element into the AVLTree. */
+/* Inserts the passed element into the AVLTree and returns a pointer to it. */
 template<class T>
-void AVLTree<T>::insert(const T &element) {
+T* AVLTree<T>::insert(const T &element) {
 
-
-	root = insert(root, element);
+	T * ref = 0;
+	root = insert(root, element, &ref);
+	return ref;
 }
 
 /* Helper method for inserting the passed element into the AVLTree. */
 template<class T>
-AVLNode<T> * AVLTree<T>::insert(AVLNode<T> * subRoot, const T &element) {
+AVLNode<T> * AVLTree<T>::insert(AVLNode<T> * subRoot, const T &element, T **ref) {
 
 	AVLNode<T> * returnValue = subRoot;
 
 	if (!subRoot) {
 		returnValue = new AVLNode<T>(element);
+		*ref = &(returnValue->data);
 	}
 	else if (element >= subRoot->data) {
 
-		subRoot->right = insert(subRoot->right, element);
+		subRoot->right = insert(subRoot->right, element, ref);
 		subRoot->rightHeight++;
 	}
 	else {
 
-		subRoot->left = insert(subRoot->left, element);
+		subRoot->left = insert(subRoot->left, element, ref);
 		subRoot->leftHeight++;
 	}
 
@@ -308,6 +332,7 @@ const std::string AVLTree<T>::traverseInOrder()
 	std::ostringstream output;
 	AVLNode<T>* lastNode = NULL;
 	AVLNode<T>* peekNode = NULL;
+	//int i = 1;
 	while (!stack.PilaVacia() || node) {
 		if (node) {
 			stack.push(node);
@@ -315,16 +340,22 @@ const std::string AVLTree<T>::traverseInOrder()
 		}
 		else {
 			node = stack.pop();
+			//output << i << " " << (node->data) << '\n';				//Store IT			
 			output << (node->data) << '\n';				//Store IT			
-			//output << (node->left) << "\t";			//Store IT
-			//output << (node->right) << "\t";			//Store IT			
+														//i++;
+														//output << (node->left) << "\t";			//Store IT
+														//output << (node->right) << "\t";			//Store IT			
 			node = node->right;
 		}
+
 	}
 	return output.str();
 }
 
-template <class T> 
+
+
+
+template <class T>
 const std::string AVLTree<T>::traverseInOrderPointer() {
 	AVLNode<T>* node = root;
 	Pila<AVLNode<T>*> stack;
@@ -339,8 +370,8 @@ const std::string AVLTree<T>::traverseInOrderPointer() {
 		else {
 			node = stack.pop();
 			output << *(node->data) << '\n';				//Store IT			
-														//output << (node->left) << "\t";			//Store IT
-														//output << (node->right) << "\t";			//Store IT			
+															//output << (node->left) << "\t";			//Store IT
+															//output << (node->right) << "\t";			//Store IT			
 			node = node->right;
 		}
 	}
@@ -379,7 +410,7 @@ void AVLTree<T>::delete_traversal(AVLNode<T> * subRoot) {
 //~AVLNode functions---------------------------------------------------------------------
 /* Constructor for AVLNode, sets the node's data to element. */
 template<class T>
-AVLNode<T>::AVLNode(T element):data(element) {
+AVLNode<T>::AVLNode(T element) :data(element) {
 	//data = element;
 	leftHeight = 0;
 	rightHeight = 0;

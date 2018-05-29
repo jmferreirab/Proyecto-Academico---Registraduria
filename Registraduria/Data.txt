@@ -1,10 +1,100 @@
-Angarita Pablo+Conor+970319+M+Soltero+1991/03/22+Villavicencio+Villavicencio+Meta+Partido de la U+1
-Jen+D la Calle+990211+F+Soltero+1990/02/19+Acacias+Villavicencio+Meta+Parn de V+0
-John+Rodriguez+1233490448+M+Casado+1997/03/19+Bogota+Bogota+Cundinamarca+Partido Verde+0
-Emily+Reynolds+232323+F+Casado+1900/03/30+Leticia+Bogota+Cundinamarca+Partido Rojo+0
-Beto+ +232323+M+Casado+1950/03/21+Cartagena+Cartegena+Bolivar+Partido Aguas+0
-Oscar+ +232323+M+Casado+1910/03/21+Cartagena+Cartegenad+Bolivar+Partido Caribe+0
-Jennifer+Novoa+24444+F+Soltero+1975/01/22+Bogota+Pasto+Narino+Partido Verde+0
-Jeremiah+Gonzalez+97220319+M+Soltero+1991/03/22+Villavicencio+Restrepo+Meta+Partido Rojo+0
-Pablo+Gonzalez+97220319+M+Soltero+1991/03/22+Villavicencio+Acacias+Meta+Partido Rojo+0
-Nicolas+Novoa+56565+M+Casado+1949/02/21+Cartagena+Villavicencio+Meta+Partido Libre+0
+1+Romona+Eager+9237787338+F+Soltero+1967/12/04+Andes+Andes+Antioquia+Partido Rojo+1
+2+Krystle+Stimson+2425325036+F+Casado+1959/04/16+Leticia+Leticia+Amazonas+Partido Verde+0
+3+Gerri+Ginty+7401169386+M+Casado+1968/03/25+Leticia+Bogota+Cundinamarca+Partido Verde+0
+4+Clarissa+McRobb+9530373480+F+Casado+1952/08/14+Cota+Bogota+Cundinamarca+Partido Verde+1
+5+Deb+Comino+2011875215+F+Casado+1975/01/15+Bogota+Bogota+Cundinamarca+Partido Verde+0
+6+Albertina+Fields+954165304+F+Casado+1963/07/14+Bojaca+Bojaca+Cundinamarca+Partido Verde+0
+7+Lynde+Boarleyson+6658133808+F+Soltero+1974/12/07+Cabrera+Cabrera+Cundinamarca+Partido Verde+0
+8+Jelene+Clayal+9392267717+F+Casado+1969/05/27+Medellin+Medellin+Antioquia+Partido Verde+0
+9+Town+Knapton+1207530185+M+Soltero+1963/05/05+Chia+Chia+Cundinamarca+Partido Verde+0
+10+Bria+Roelofsen+7571474424+F+Casado+1964/07/15+Beltran+Beltran+Cundinamarca+Partido Verde+0
+11+Mirabella+Morillas+7022693987+F+Casado+1967/10/29+Bituima+Bituima+Cundinamarca+Partido Verde+0
+12+Lira+Ghione+2165565009+F+Casado+1951/08/03+Bogota+Bogota+Cundinamarca+Partido Verde+1
+13+Kienan+Peascod+2245794178+M+Casado+1957/09/09+Bojaca+Bojaca+Cundinamarca+Partido Verde+0
+14+Laurice+Emby+2376226377+F+Soltero+1964/09/04+Cabrera+Cabrera+Cundinamarca+Partido Verde+0
+15+Padriac+Struss+3906271461+M+Soltero+1950/06/22+El Calvario+El Calvario+Meta+Partido Sociedad+0
+16+Helenelizabeth+Jerschke+3460078855+F+Casado+1975/07/03+El Castillo+El Castillo+Meta+Partido Sociedad+1
+17+Shepard+Kluss+9295885372+M+Casado+1963/12/18+El Dorado+El Dorado+Meta+Partido Sociedad+0
+18+Lionel+Sacher+4503406649+M+Casado+1964/05/14+Fuente de Oro+Fuente de Oro+Meta+Partido Sociedad+0
+19+Nickola+Coltart+9285904609+M+Soltero+1975/01/29+Granada+Granada+Meta+Partido Sociedad+0
+20+Rubi+Blaylock+216080164+F+Soltero+1979/04/25+Guamal+Guamal+Meta+Partido Sociedad+0
+21+Norbie+Kerbler+7772781697+M+Soltero+1959/11/13+El Calvario+El Calvario+Meta+Partido Verde+0
+22+Barnaby+Haveline+3113461802+M+Soltero+1970/06/30+El Castillo+El Castillo+Meta+Partido Verde+1
+23+Millie+Baddeley+9614543188+F+Casado+1951/11/20+El Dorado+El Dorado+Meta+Partido Sociedad+0
+24+Thaddus+Poleye+8569274137+M+Soltero+1979/01/24+Fuente de Oro+Fuente de Oro+Meta+Partido Sociedad+0
+25+Willie+Bush+3369216235+F+Casado+1969/11/11+Granada+Granada+Meta+Partido Sociedad+1
+26+Tadeo+Truman+2514531832+M+Soltero+1980/05/27+Guamal+Guamal+Meta+Partido Sociedad+0
+27+Peggi+Ferrone+3030988422+F+Casado+1978/01/04+Andes+Andes+Antioquia+Partido Rojo+0
+28+Juieta+Kulis+9749930618+F+Casado+1964/04/03+Leticia+Leticia+Amazonas+Partido Rojo+0
+29+Bibbie+Dignam+4108239557+F+Soltero+1958/01/24+Leticia+Bogota+Cundinamarca+Partido Rojo+0
+30+Odie+Hinchon+4021524597+M+Casado+1978/10/17+El Castillo+El Castillo+Meta+Partido Rojo+0
+31+Kelvin+Fidian+8595059292+M+Soltero+1968/05/15+El Dorado+El Dorado+Meta+Partido Rojo+0
+32+Cori+Cunnington+2921286592+M+Soltero+1971/08/19+Fuente de Oro+Fuente de Oro+Meta+Partido Rojo+0
+33+Kerrie+Plom+1002313045+F+Casado+1959/11/03+Granada+Granada+Meta+Partido Rojo+0
+34+Carine+Harwood+4425091474+F+Casado+1973/10/29+Guamal+Guamal+Meta+Partido Rojo+0
+35+Geno+Heugh+9814034651+M+Casado+1965/04/26+Consaca+Consaca+Narino+Partido Rojo+0
+36+Yehudi+Biskup+8510144206+M+Casado+1964/10/13+Contadero+Contadero+Narino+Partido Rojo+0
+37+Reamonn+Evershed+6548298251+M+Soltero+1975/08/25+Cordoba+Cordoba+Narino+Partido Rojo+0
+38+Gerhardt+MacCartney+4921697978+M+Casado+1955/11/11+Cuaspud+Cuaspud+Narino+Partido Rojo+0
+39+Ronald+Pawlett+2624376908+M+Casado+1973/06/09+Cumbal+Cumbal+Narino+Partido Negro+0
+40+Dicky+Deabill+2727129827+M+Soltero+1966/08/05+Cumbitara+Cumbitara+Narino+Partido Negro+0
+41+Skippie+Yellop+4209627993+M+Casado+1971/01/23+Chia+Chia+Cundinamarca+Partido Negro+0
+42+Dianemarie+Panketh+6075091985+F+Casado+1972/02/03+Beltran+Beltran+Cundinamarca+Partido Negro+0
+43+Shannan+Aharoni+6016362979+M+Casado+1973/07/17+Bituima+Bituima+Cundinamarca+Partido Negro+0
+44+Christyna+Sewley+8844377226+F+Soltero+1965/07/19+Bogota+Bogota+Cundinamarca+Partido Negro+0
+45+Dame+Riccardini+8792068576+M+Soltero+1966/12/15+Bojaca+Bojaca+Cundinamarca+Partido Negro+0
+46+Dennie+Udey+1248848988+M+Soltero+1956/04/03+Cabrera+Cabrera+Cundinamarca+Partido Negro+0
+47+Elizabet+Huxster+7230532519+F+Soltero+1957/05/27+Arboleda+Villavicencio+Meta+Partido Negro+0
+48+Janot+Linnard+8488845683+F+Soltero+1953/09/20+Medellin+Villavicencio+Meta+Partido Negro+0
+49+Inness+Giacubbo+5537719664+M+Casado+1950/12/21+Chia+Chia+Cundinamarca+Partido Negro+0
+50+Britney+Sarre+4266543044+F+Casado+1958/07/01+Beltran+Beltran+Cundinamarca+Partido Negro+0
+51+Jane+Beadel+8607392135+F+Soltero+1960/11/12+Bituima+Bituima+Cundinamarca+Partido Negro+0
+52+Sheelagh+Pammenter+2148884017+F+Casado+1951/12/24+Bogota+Bogota+Cundinamarca+Partido Libre+0
+53+Charlotte+McGuckin+6224227994+F+Soltero+1960/06/30+Bojaca+Bojaca+Cundinamarca+Partido Libre+0
+54+Clair+Blackie+4923226077+F+Soltero+1959/05/27+Cabrera+Cabrera+Cundinamarca+Partido Libre+0
+55+Pren+Ion+2893822088+M+Soltero+1957/08/28+Bogota+Villavicencio+Meta+Partido Libre+0
+56+Alethea+Haugen+9530082259+F+Soltero+1973/10/31+Consaca+Consaca+Narino+Partido Negro+0
+57+Gayler+Heenan+7803990460+M+Soltero+1961/07/18+Contadero+Contadero+Narino+Partido Negro+0
+58+Lilian+Ravens+1501158683+F+Soltero+1975/08/25+Cordoba+Cordoba+Narino+Partido Negro+0
+59+Currey+Perkins+8857115833+M+Casado+1952/06/06+Cuaspud+Cuaspud+Narino+Partido Negro+0
+60+Frayda+Hallatt+1201179026+F+Casado+1954/10/02+Cumbal+Cumbal+Narino+Partido Libre+0
+61+Cristionna+Kabos+1603702792+F+Soltero+1971/11/29+Cumbitara+Cumbitara+Narino+Partido Libre+0
+62+Cora+Antonopoulos+8849601591+F+Casado+1966/08/28+Chia+Chia+Cundinamarca+Partido Cristiano+0
+63+Honey+Pauly+1319476021+F+Casado+1956/03/29+Beltran+Beltran+Cundinamarca+Partido Cristiano+0
+64+Kiah+Elderkin+7303928673+F+Soltero+1977/05/24+Bituima+Bituima+Cundinamarca+Partido Cristiano+0
+65+Tilly+Wakley+452231438+F+Casado+1962/06/18+Bogota+Bogota+Cundinamarca+Partido Cristiano+0
+66+Dan+Thomtson+8255619678+M+Casado+1974/08/01+Bojaca+Bojaca+Cundinamarca+Partido Cristiano+0
+67+Joletta+Aimable+3662302543+F+Casado+1956/11/09+Cabrera+Cabrera+Cundinamarca+Partido Cristiano+0
+68+Jackquelin+Thomsen+5614539682+F+Casado+1958/04/09+Chia+Chia+Cundinamarca+Partido Cristiano+0
+69+Marcille+Romanski+1739173114+F+Casado+1967/05/31+Beltran+Beltran+Cundinamarca+Partido Conservador+0
+70+Ivor+Tackes+9417949264+M+Soltero+1965/02/13+Bituima+Bituima+Cundinamarca+Partido Conservador+0
+71+Eryn+Janu+1338674796+F+Casado+1969/08/05+Bogota+Bogota+Cundinamarca+Partido Cristiano+0
+72+Corbett+Haughan+6968765358+M+Casado+1959/01/31+Bojaca+Bojaca+Cundinamarca+Partido Cristiano+0
+73+Marjie+Mazey+309599693+F+Soltero+1962/04/21+Cabrera+Cabrera+Cundinamarca+Partido Cristiano+0
+74+Reed+Wathan+3013615213+M+Soltero+1977/11/30+Valparaiso+Valparaiso+Antioquia+Partido Cristiano+0
+75+Solly+Maccraw+5837300066+M+Casado+1962/06/28+Vegachi+Vegachi+Antioquia+Partido Cristiano+0
+76+Arabel+Schole+5718212955+F+Soltero+1962/07/07+Venecia+Venecia+Antioquia+Partido Negro+0
+77+Corie+Rymmer+9936164129+F+Casado+1961/11/26+Vigia del Fuerte+Vigia del Fuerte+Antioquia+Partido Negro+0
+78+Verney+Newband+1889870234+M+Casado+1958/04/14+Yali+Yali+Antioquia+Partido Negro+0
+79+Jo ann+Spurriar+1894420572+F+Casado+1969/04/30+Yarumal+Yarumal+Antioquia+Partido Negro+0
+80+Clarice+Downgate+6453180705+F+Casado+1967/04/14+Valparaiso+Valparaiso+Antioquia+Partido Conservador+0
+81+Kaine+Durtnell+1661750254+M+Soltero+1975/07/15+Vegachi+Vegachi+Antioquia+Partido Conservador+0
+82+Roberta+Chiplin+4858323641+F+Casado+1966/09/16+Venecia+Venecia+Antioquia+Partido Negro+0
+83+Martyn+Carlett+1805982560+M+Casado+1975/04/27+Vigia del Fuerte+Vigia del Fuerte+Antioquia+Partido Negro+0
+84+Angel+Spragge+7601177272+M+Soltero+1975/05/24+Yali+Yali+Antioquia+Partido Negro+0
+85+Tiffy+Badwick+5459097403+F+Casado+1976/10/18+Yarumal+Yarumal+Antioquia+Partido Azul+0
+86+Kassi+Newis+8608125191+F+Casado+1968/04/19+Ipiales+Villavicencio+Meta+Partido Azul+0
+87+Falito+Dutnall+6000462450+M+Soltero+1979/10/19+Yarumal+Yarumal+Antioquia+Partido Azul+0
+88+Madlin+McLenaghan+206195150+F+Soltero+1953/10/29+Valparaiso+Valparaiso+Antioquia+Partido Azul+0
+89+Pyotr+Rouzet+5377215529+M+Casado+1958/03/18+Vegachi+Vegachi+Antioquia+Partido Azul+0
+90+Penn+Findlow+9374765030+M+Soltero+1962/03/18+Venecia+Venecia+Antioquia+Partido Azul+0
+91+Clementine+Dalloway+1663906859+F+Soltero+1969/10/02+Vigia del Fuerte+Vigia del Fuerte+Antioquia+Partido Azul+0
+92+Persis+Scrauniage+5740419431+F+Soltero+1979/01/28+Yali+Yali+Antioquia+Partido Azul+0
+93+Cecelia+Ficken+1723686821+F+Soltero+1962/08/21+Yarumal+Yarumal+Antioquia+Partido Azul+0
+94+Nollie+Coopman+8532937977+F+Soltero+1976/10/15+Cuaspud+Cuaspud+Narino+Partido Azul+0
+95+Peggie+Lindner+3161235457+F+Soltero+1950/11/06+Cumbal+Cumbal+Narino+Partido Azul+0
+96+Holly+Duchateau+1714617006+F+Soltero+1976/08/31+Candelaria+Cumbitara+Narino+Partido Azul+0
+97+Gabriella+Tracey+8362339088+F+Casado+1961/05/12+Venecia+Venecia+Antioquia+Partido Azul+0
+98+Elbert+Rampage+7086764775+M+Casado+1958/03/25+Vigia del Fuerte+Vigia del Fuerte+Antioquia+Partido Azul+0
+99+Jada+Gorelli+8105826996+F+Casado+1971/12/16+Yali+Yali+Antioquia+Partido Azul+0
+100+Lionello+Scotson+9357368275+M+Soltero+1979/05/29+Ipiales+Villavicencio+Meta+Partido Azul+0

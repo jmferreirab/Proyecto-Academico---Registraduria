@@ -89,6 +89,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -124,8 +127,11 @@
   <ItemGroup>
     <ClInclude Include="AVL.h" />
     <ClInclude Include="Herramientas.h" />
+    <ClInclude Include="Lists.h" />
     <ClInclude Include="Pila.h" />
+    <ClInclude Include="Registraduria.h" />
     <ClInclude Include="StructLib.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

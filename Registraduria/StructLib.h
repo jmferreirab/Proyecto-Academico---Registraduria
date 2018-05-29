@@ -1,12 +1,15 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "AVL.h"
+#include "Herramientas.h"
 
 using std::string;
 using std::stringstream;
 
 struct Candidato {
 
+	int key;
 	string nombre, apellido, id;
 	string genero;
 	string estadoCivil;
@@ -14,7 +17,13 @@ struct Candidato {
 	string partido;
 	string aPresidencia;
 
-	friend std::ostream& operator<<(std::ostream& out, const Candidato& c) { 
+	inline bool operator==(const Candidato &candd)const { return key == candd.key; }
+	inline bool operator!=(const Candidato &candd)const { return !(key == candd.key); }
+	inline bool operator<(const Candidato &candd)const { return key < candd.key; }
+	inline bool operator>(const Candidato &candd)const { return candd.key < key; }
+	inline bool operator<=(const Candidato &candd)const { return !(key > candd.key); }
+	inline bool operator>=(const Candidato &candd)const { return !(key < candd.key); }
+	friend std::ostream& operator<<(std::ostream& out, const Candidato& c) {
 		out << std::left
 			<< std::setw(30) << c.nombre + " " + c.apellido << '\t'
 			<< std::setw(5) << edad(c.fechaNacimiento) << '\t'					//Aparece en consultas
@@ -29,6 +38,9 @@ struct CandidaturaPresidencial {
 	Candidato presidente;
 	Candidato vicePresidente;
 
+	inline bool operator==(const CandidaturaPresidencial &candd)const { return presidente.key == candd.presidente.key; }
+	inline bool operator<(const CandidaturaPresidencial &candd)const { return presidente.key < candd.presidente.key; }
+	inline bool operator>=(const CandidaturaPresidencial &candd)const { return !(presidente.key < candd.presidente.key); }
 };
 
 
@@ -52,14 +64,14 @@ class ResultadosCiudadX {
 	//string departamento;
 	//LinkedList<int> votosDepartamento;   //Every candidato is attached to a 'partido'
 
-										 //En votos departamento
-										 //pos 0 : #votos blanco
-										 //pos 1 : #votos nulos
-										 //pos 2 : #votos de hombres
-										 //pos 3 : #votos de mujers
-										 //pos 4 : #votos candidatoAlcaldia 1
-										 //pos 5 : #votos candidatoAlcaldia 2
-										 //pos 
+	//En votos departamento
+	//pos 0 : #votos blanco
+	//pos 1 : #votos nulos
+	//pos 2 : #votos de hombres
+	//pos 3 : #votos de mujers
+	//pos 4 : #votos candidatoAlcaldia 1
+	//pos 5 : #votos candidatoAlcaldia 2
+	//pos 
 
 };
 
@@ -85,9 +97,9 @@ public:
 		// pass by reference performs the copy
 	{
 		//this->_size = src._size;
-		std::swap(nombre, src.nombre); 
+		std::swap(nombre, src.nombre);
 		std::swap(candidatos, src.candidatos);
-									   //std::cout << "Called Partido =OP\n";
+		//std::cout << "Called Partido =OP\n";
 		return *this;
 	}
 	Partido(const Partido&d) {
@@ -140,7 +152,7 @@ public:
 		ciudades = new AVLTree<Ciudad>;
 		partidos = new AVLTree<Partido>;
 	}
-	
+
 
 	inline bool operator==(const Departamento &depto)const { return nombre == depto.nombre; }
 	inline bool operator!=(const Departamento &depto)const { return !(nombre == depto.nombre); }
@@ -148,7 +160,7 @@ public:
 	inline bool operator>(const Departamento &depto)const { return depto.nombre < nombre; }
 	inline bool operator<=(const Departamento &depto)const { return !(nombre > depto.nombre); }
 	inline bool operator>=(const Departamento &depto)const { return !(nombre < depto.nombre); }
-	friend std::ostream& operator<<(std::ostream& out, const Departamento& depto){ return out << depto.nombre;	}
+	friend std::ostream& operator<<(std::ostream& out, const Departamento& depto) { return out << depto.nombre; }
 
 	Departamento &operator=(Departamento &src)
 		// pass by reference performs the copy
@@ -157,7 +169,7 @@ public:
 		std::swap(nombre, src.nombre); // now just swap the head of the copy 
 		std::swap(ciudades, src.ciudades); // now just swap the head of the copy 
 		std::swap(partidos, src.partidos);
-								   // for the head of the source
+		// for the head of the source
 		//std::cout << "Called Departamento =OP\n";
 		return *this;
 	}
@@ -170,5 +182,29 @@ public:
 		partidos = d.partidos;
 		//std::cout << "Called Departamento CopyCtor\n";
 	}
+
+	Ciudad* getCiudad(string name) {
+		return ciudades->find(name);
+	}
+
+	Partido* getPartido(string name) {
+		return partidos->find(name);
+	}
+
+	//Ciudad getCiudad(int key) {
+	//	LinkedList<Ciudad>* it = ciudades->asList();
+	//	for (int i = 1; i <= (*it).size(); i++) {
+	//		if (i == key) return (*it).get(i);
+	//	}
+	//}
+
+	//Partido getPartido(int key) {
+	//	LinkedList<Partido>* it = partidos->asList();
+	//	for (int i = 1; i <= (*it).size(); i++) {
+	//		if (i == key) return (*it).get(i);
+	//	}
+	//}
+
+	//Getters are broken due to LL
 
 };
